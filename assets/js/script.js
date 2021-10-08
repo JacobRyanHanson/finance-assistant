@@ -68,7 +68,7 @@ let getFeaturedNews = function(){
 }
 //passes in ticker
 let getTickerNews = function(ticker){
-    let apiUrl = `https://api.polygon.io/v3/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
+    let apiUrl = `https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl)
         .then(function(response){
             if(response.ok){
@@ -95,4 +95,3 @@ let getCryptoPrice = function(ticker){
 }
 getTickerNews("RCAT")
 var form = document.addEventListener("submit", formSubmitHandler);
-let stockApi = function () {}
