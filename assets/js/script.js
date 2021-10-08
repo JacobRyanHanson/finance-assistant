@@ -28,5 +28,42 @@ let find = function() {
 }
 find();
 let stockApi = function(){
+    let apiUrl = "https://api.polygon.io/v3/reference/tickers?ticker=BTC&active=true&sort=ticker&order=asc&limit=10&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg";
+    fetch(apiUrl)
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function(data){
+                    console.log(data);
+                })
+            }
+        })
 }
+let getFeaturedNews = function(){
+    let apiUrl = "https://api.polygon.io/v3/reference/news?limit=10&order=descending&sort=published_utc&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg";
+    fetch(apiUrl)
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function(data){
+                    //here are featured articles using [i+1] and .title and .article_url
+                })
+            }
+        })
+}
+//passes in ticker
+let getTickerNews = function(ticker){
+    let apiUrl = `https://api.polygon.io/v3/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
+    fetch(apiUrl)
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function(data){
+                    // stock based articles;
+                    console.log(data);
+                })
+            }
+        })
+        .catch(function(error){
+            console.log("No news for this stock");
+        })
+}
+getTickerNews("RCAT")
 stockApi();
