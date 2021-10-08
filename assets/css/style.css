@@ -13,6 +13,54 @@ body {
   height: 70px;
   margin: 10px;
 }
+.list-item-1,
+.list-item-2 {
+  cursor: pointer;
+  transition: 0.5s;
+}
+.list-item-1:hover,
+.list-item-2:hover {
+  color: cornflowerblue;
+  transition: 0.5s;
+}
+.modal-bg {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5;
+}
+.bg-active {
+  visibility: visible;
+  opacity: 1;
+}
+.modal {
+  position: relative;
+  background-color: #fff;
+  width: 50%;
+  height: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.modal,
+p {
+  text-align: center;
+  background-color: #fff;
+}
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 
 /* #nav {
   background-color: #fff;
