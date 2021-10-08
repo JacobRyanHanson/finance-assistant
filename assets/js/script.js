@@ -77,6 +77,17 @@ let getTickerNews = function(ticker){
             console.log("No news for this stock");
         })
 }
+let getCryptoPrice = function(ticker){
+    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/X:${ticker}USD/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`
+    fetch(apiUrl)
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function(data){
+                    console.log(data);
+                })
+            }
+        })
+}
 getTickerNews("RCAT")
 var form = document.addEventListener("submit", formSubmitHandler);
 let stockApi = function () {}
