@@ -10,7 +10,7 @@ function formSubmitHandler(event) {
     
     if (coinType) {
         if (convertType) {
-            if (typeof (volume) === "number" && volume !== 0) {
+            if (typeof (volume) === "number" && volume > 0) {
                 getInfo(coinType, convertType, volume);
             } else {
                 alert("Please enter a valid amount!");
@@ -44,6 +44,7 @@ let display = function (data, coin, volume) {
         }
     }
 }
+//Get stock prices
 let stockApi = function(ticker){
     let apiUrl = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl)
@@ -55,6 +56,7 @@ let stockApi = function(ticker){
             }
         })
 }
+//top of page api for featued articles
 let getFeaturedNews = function(){
     let apiUrl = "https://api.polygon.io/v3/reference/news?limit=10&order=descending&sort=published_utc&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg";
     fetch(apiUrl)
@@ -67,8 +69,9 @@ let getFeaturedNews = function(){
         })
 }
 //passes in ticker
+//articles for specific tickers
 let getTickerNews = function(ticker){
-    let apiUrl = `https://api.polygon.io/v3/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
+    let apiUrl = `https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl)
         .then(function(response){
             if(response.ok){
@@ -82,6 +85,17 @@ let getTickerNews = function(ticker){
             console.log("No news for this stock");
         })
 }
+// Getting the Crypto Price
+let getCryptoPrice = function(ticker){
+    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/X:${ticker}USD/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`
+    fetch(apiUrl)
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function(data){
+                    console.log(data);
+                })
+            }
+        })
+}
 getTickerNews("RCAT")
 var form = document.addEventListener("submit", formSubmitHandler);
-let stockApi = function () {}
