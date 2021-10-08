@@ -1,20 +1,25 @@
 var coinTypeInput = document.querySelector(".coin-type");
+var convertTypeInput = document.querySelector(".convert-type")
 var volumeInput = document.querySelector(".volume");
 
 function formSubmitHandler(event) {
     event.preventDefault();
     var coinType = coinTypeInput.value.toUpperCase().trim();
+    var convertType = convertTypeInput.value.toUpperCase().trim();
     var volume = parseFloat(volumeInput.value);
     
     if (coinType) {
-        coinType = coinType.split(" ");
-        if (typeof(volume) === "number" && volume !== 0) {
-            getInfo(coinType[0], coinType[1], volume);
+        if (convertType) {
+            if (typeof (volume) === "number" && volume !== 0) {
+                getInfo(coinType, convertType, volume);
+            } else {
+                alert("Please enter a valid amount!");
+            }    
         } else {
-            alert("Please enter a valid amount!");
+            alert("Please enter a valid stock or cryptocurrecty converstion!")
         }
     } else {
-        alert("Please enter a cryptocurrency!");
+        alert("Please enter a valid stock or cryptocurrency!");
     }
 }
 
