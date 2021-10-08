@@ -1,7 +1,5 @@
 var coinTypeInput = document.querySelector(".coin-type");
 var volumeInput = document.querySelector(".volume");
-var form = document.addEventListener("submit", formSubmitHandler);
-
 
 function formSubmitHandler(event) {
     event.preventDefault();
@@ -41,15 +39,6 @@ let display = function (data, coin, volume) {
         }
     }
 }
-<<<<<<< HEAD
-let find = function() {
-    // use text areas to get this data when they are created
-    let coin = window.prompt("Letters for Coin all caps and that to exchange");
-    coin = coin.split(" ");
-    let vol = window.prompt("How many coins do you want to convert");
-   getInfo(coin[0], coin[1], vol);
-}
-find();
 let stockApi = function(){
     let apiUrl = "https://api.polygon.io/v3/reference/tickers?ticker=BTC&active=true&sort=ticker&order=asc&limit=10&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg";
     fetch(apiUrl)
@@ -89,8 +78,5 @@ let getTickerNews = function(ticker){
         })
 }
 getTickerNews("RCAT")
-=======
-
+var form = document.addEventListener("submit", formSubmitHandler);
 let stockApi = function () {}
->>>>>>> 97ed08ad1e7f6e5275fcd16cb38b59b1f8ac5104
-stockApi();
