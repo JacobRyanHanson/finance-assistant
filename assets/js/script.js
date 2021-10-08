@@ -10,7 +10,7 @@ function formSubmitHandler(event) {
     
     if (coinType) {
         if (convertType) {
-            if (typeof (volume) === "number" && volume !== 0) {
+            if (typeof (volume) === "number" && volume > 0) {
                 getInfo(coinType, convertType, volume);
             } else {
                 alert("Please enter a valid amount!");
