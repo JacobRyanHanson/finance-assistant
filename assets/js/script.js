@@ -44,6 +44,7 @@ let display = function (data, coin, volume) {
         }
     }
 }
+//Get stock prices
 let stockApi = function(ticker){
     let apiUrl = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl)
@@ -55,6 +56,7 @@ let stockApi = function(ticker){
             }
         })
 }
+//top of page api for featued articles
 let getFeaturedNews = function(){
     let apiUrl = "https://api.polygon.io/v3/reference/news?limit=10&order=descending&sort=published_utc&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg";
     fetch(apiUrl)
@@ -67,6 +69,7 @@ let getFeaturedNews = function(){
         })
 }
 //passes in ticker
+//articles for specific tickers
 let getTickerNews = function(ticker){
     let apiUrl = `https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl)
@@ -82,6 +85,7 @@ let getTickerNews = function(ticker){
             console.log("No news for this stock");
         })
 }
+// Getting the Crypto Price
 let getCryptoPrice = function(ticker){
     let apiUrl = `https://api.polygon.io/v2/aggs/ticker/X:${ticker}USD/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`
     fetch(apiUrl)
