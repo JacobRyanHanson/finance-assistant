@@ -1,8 +1,24 @@
+:root {}
+
 * {
-  background-color: transparent;
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
+  background: #b4dde3;
 }
-#Nav {
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#stock-icon {
+  height: 70px;
+  margin: 10px;
+}
+
+
+
+/* #nav {
   background-color: #fff;
 }
 
@@ -26,4 +42,4 @@
 .list-item:hover {
   color: cornflowerblue;
   transition: 0.5s;
-}
+} */
