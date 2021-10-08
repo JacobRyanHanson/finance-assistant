@@ -1,6 +1,19 @@
 var coinTypeInput = document.querySelector(".coin-type");
 var convertTypeInput = document.querySelector(".convert-type")
 var volumeInput = document.querySelector(".volume");
+var aboutModal = document.querySelector(".list-item-2")
+var modalbg = document.querySelector(".modal-bg")
+var closeBtn = document.getElementById("close-button")
+
+
+// Makes About Modal Visible
+aboutModal.addEventListener('click',function(){
+    modalbg.classList.add("bg-active");
+});
+// Closes About modal
+closeBtn.addEventListener('click',function(){
+    modalbg.classList.remove("bg-active");
+});
 
 function formSubmitHandler(event) {
     event.preventDefault();
