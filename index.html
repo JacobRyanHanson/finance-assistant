@@ -4,51 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Finance Assistant</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
     <!-- Start Of Header-->
     <header>
-        <div class="row">
-            <div class="columns small-1">
-                <img id="stock-icon" src="./assets/images/stock-icon.png">
+        <div class="grid-x">
+            <div class="cell">
+                <img src="./assets/images/stock-icon.png" alt="">
+
+                <h1><a href="./index.html" class="title">Finance Assistant</a></h1>
+
+                <nav>
+                    <ul>
+                        <li><a href="">Featured Articles</a></li>
+                        <li><a href="">Prices</a></li>
+                        <li><a href="">Exchange Rates</a></li>
+                        <li><a href="">Article Search</a></li>
+                    </ul>
+                </nav>
             </div>
-
-            <div>
-
-            </div>
-        </div>
-
-        <div id="nav">
-            <ul class="menu align-center simple">
-
-                <li class="menu-text" id="header-text">Net Worth</li>
-                <li class="list-item-1">Home</li>
-                <li class="list-item-2">About</li>
-                <li class="list-item-3">Share</li>
-            </ul>
         </div>
     </header>
     <!-- About Modal Section -->
     <div class="modal-bg">
         <div class="modal" id="about-modal">
-            
+
             <h2>About Us</h2>
             <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ligula, laoreet ac pulvinar id, 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ligula, laoreet ac pulvinar id,
                 gravida eu est. Donec dictum augue aliquam efficitur semper. Donec semper dignissim nibh, nec cursus
-                 lectus euismod at. Maecenas ipsum risus, pellentesque vel gravida ut, venenatis gravida urna.
-                  Duis ornare sapien ac quam imperdiet, id rhoncus dolor egestas. Phasellus lacinia risus at nisi luctus, quis maximus elit rutrum. Nam et elit fermentum, 
+                lectus euismod at. Maecenas ipsum risus, pellentesque vel gravida ut, venenatis gravida urna.
+                Duis ornare sapien ac quam imperdiet, id rhoncus dolor egestas. Phasellus lacinia risus at nisi luctus,
+                quis maximus elit rutrum. Nam et elit fermentum,
                 tincidunt sapien eget, mattis felis. Curabitur luctus in sem ut consequat. Sed non interdum</p>
             <button class="button" type="button" id="close-button">X</button>
-       
+
         </div>
     </div>
-<!-- Start Of Main Section-->
+    <!-- Start Of Main Section-->
     <main>
         <form>
             <label>Cryptocurrency: </label>
