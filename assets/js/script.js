@@ -12,7 +12,7 @@ var aboutModal = document.querySelector(".list-item-2")
 var modalbg = document.querySelector(".modal-bg")
 var closeBtn = document.getElementById("close-button")
 
-//top of page api for featued articles
+// Gets featured news and displays it to the page.
 getFeaturedNews();
 
 function getFeaturedNews() {
@@ -20,7 +20,6 @@ function getFeaturedNews() {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
                 for (var i = 0; i < featuredArticles.length; i++) {
                     featuredArticles[i].setAttribute("href", data.results[i].article_url);
                     featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('" + data.results[i].image_url + "')";
@@ -31,8 +30,19 @@ function getFeaturedNews() {
         }
     });
 }
-
-
+stockApi("GOOGL");
+// Gets stock prices.
+function stockApi(ticker) {
+    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
+    fetch(apiUrl).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+                
+            });
+        }
+    });
+}
 
 // // Makes About Modal Visible
 // aboutModal.addEventListener('click',function(){
@@ -85,36 +95,9 @@ let display = function (data, coin, volume) {
         }
     }
 }
-//Get stock prices
-let stockApi = function (ticker) {
-    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
-    fetch(apiUrl)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
 
-                })
-            }
-        })
-}
 
-//passes in ticker
-//articles for specific tickers
-let getTickerNews = function (ticker) {
-    let apiUrl = `https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
-    fetch(apiUrl)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    // stock based articles;
 
-                })
-            }
-        })
-        .catch(function (error) {
-
-        })
-}
 // Getting the Crypto Price
 let getCryptoPrice = function (ticker) {
     let apiUrl = `https://api.polygon.io/v2/aggs/ticker/X:${ticker}USD/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`
@@ -129,3 +112,21 @@ let getCryptoPrice = function (ticker) {
 }
 // getTickerNews("RCAT")
 var form = document.addEventListener("submit", formSubmitHandler);
+
+//passes in ticker
+//articles for specific tickers
+// let getTickerNews = function (ticker) {
+//     let apiUrl = `https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
+//     fetch(apiUrl)
+//         .then(function (response) {
+//             if (response.ok) {
+//                 response.json().then(function (data) {
+//                     // stock based articles;
+
+//                 })
+//             }
+//         })
+//         .catch(function (error) {
+
+//         })
+// }

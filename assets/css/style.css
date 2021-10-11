@@ -58,15 +58,6 @@ header ul>* {
 	border: #32343d solid 1px;
 }
 
-
-
-.featured-image {
-	height: 100%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
 #featured-articles p
  {
 	padding: 10px;
@@ -83,6 +74,13 @@ header ul>* {
 	margin-bottom: 5px;
 }
 
+.featured-image {
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
 .featured-article-author {
 	display: inline;
 	position: absolute;
@@ -90,6 +88,23 @@ header ul>* {
 	font-size: 1rem;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
+}
+
+.price-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: #32343d;
+	color: #b4dde3;
+	margin: 20px;
+	height: 260px;
+}
+
+.price-form p {
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 5px;
+	border: #b4dde3 solid 1px;
 }
 
 /* 
