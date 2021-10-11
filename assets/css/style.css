@@ -47,6 +47,7 @@ header ul>* {
 #featured-articles {
 	position: relative;
 }
+
 #featured-articles>* {
 	display: flex;
 	flex-direction: column;
@@ -56,6 +57,8 @@ header ul>* {
 	margin: 20px;
 	border: #32343d solid 1px;
 }
+
+
 
 .featured-image {
 	height: 100%;
