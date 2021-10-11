@@ -112,16 +112,18 @@ let display = function (data, coin, volume) {
 
 // Getting the Crypto Price
 let getCryptoPrice = function (ticker) {
-    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/X:${ticker}USD/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`
+    let date = moment().subtract(1, "days").format("YYYY-MM-DD");
+    let apiUrl = `https://api.polygon.io/v1/open-close/crypto/${ticker}/USD/${date}?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
-
+                    console.log(data)
                 })
             }
         })
 }
+getCryptoPrice("BTC");
 // getTickerNews("RCAT")
 var form = document.addEventListener("submit", formSubmitHandler);
 
