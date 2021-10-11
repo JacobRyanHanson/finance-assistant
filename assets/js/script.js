@@ -22,6 +22,7 @@ function getFeaturedNews() {
             response.json().then(function (data) {
                 for (var i = 0; i < featuredArticles.length; i++) {
                     featuredArticles[i].setAttribute("href", data.results[i].article_url);
+                    featuredArticles[i].setAttribute("target", "_blank");
                     featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('" + data.results[i].image_url + "')";
                     featuredArticles[i].querySelector(".featured-article-title").textContent = data.results[i].title;
                     featuredArticles[i].querySelector(".featured-article-author").textContent = data.results[i].publisher.name;
