@@ -34,7 +34,18 @@ function getFeaturedNews() {
 stockApi("GOOGL");
 // Gets stock prices.
 function stockApi(ticker) {
-    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
+    let test = false;
+    let counter = 1;
+    while(!test){
+        let testdate = moment().subtract(counter,"days").format('dddd');
+        if(testdate === "Sunday" || testdate === "Saturday"){
+            counter++
+        } else{
+            test = true;
+        }
+    }
+    let date = moment().subtract(counter, "days").format('YYYY-MM-DD');
+    let apiUrl = `https://api.polygon.io/v1/open-close/${ticker}/${date}?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
