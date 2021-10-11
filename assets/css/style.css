@@ -79,6 +79,7 @@ header ul>* {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	background-image: url("../images/piggy-bank-icon.jpg");
 }
 
 .featured-article-author {
@@ -101,10 +102,17 @@ header ul>* {
 }
 
 .price-form p {
+	display: flex;
+	justify-content: space-between;
 	margin-left: 10px;
 	margin-right: 10px;
 	padding: 5px;
 	border: #b4dde3 solid 1px;
+}
+
+.previous-close {
+	align-self: center;
+	border-radius: 10px;
 }
 
 /* 

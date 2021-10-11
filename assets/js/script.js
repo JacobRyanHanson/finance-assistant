@@ -5,6 +5,10 @@ var featuredArticles = [
     document.querySelector(".article-3")
 ]
 
+var priceForm = document.querySelector(".price-form");
+
+var form = document.addEventListener("submit", formSubmitHandler);
+
 var coinTypeInput = document.querySelector(".coin-type");
 var convertTypeInput = document.querySelector(".convert-type")
 var volumeInput = document.querySelector(".volume");
@@ -12,17 +16,22 @@ var aboutModal = document.querySelector(".list-item-2")
 var modalbg = document.querySelector(".modal-bg")
 var closeBtn = document.getElementById("close-button")
 
-// Gets featured news and displays it to the page.
 getFeaturedNews();
-
+// Gets featured news.
 function getFeaturedNews() {
     let apiUrl = "https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p";
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+                console.log(data)
                 for (var i = 0; i < featuredArticles.length; i++) {
                     featuredArticles[i].setAttribute("href", data.results[i].article_url);
-                    featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('" + data.results[i].image_url + "')";
+                    if (data.results[i].article_url) {
+                        featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('" + data.results[i].image_url + "')";
+                    } else {
+                        featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('./assets/images/piggy-bank-icon.jpg')";
+                    }
+                    
                     featuredArticles[i].querySelector(".featured-article-title").textContent = data.results[i].title;
                     featuredArticles[i].querySelector(".featured-article-author").textContent = data.results[i].publisher.name;
                 }
@@ -33,11 +42,15 @@ function getFeaturedNews() {
 stockApi("GOOGL");
 // Gets stock prices.
 function stockApi(ticker) {
-    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
+    let apiUrl = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p";
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
+                priceForm.querySelector(".open").textContent = data.results[0].o;
+                priceForm.querySelector(".high").textContent = data.results[0].h;
+                priceForm.querySelector(".low").textContent = data.results[0].l;
+                priceForm.querySelector(".volume").textContent = data.results[0].v;
                 
             });
         }
@@ -110,9 +123,8 @@ let getCryptoPrice = function (ticker) {
             }
         })
 }
-// getTickerNews("RCAT")
-var form = document.addEventListener("submit", formSubmitHandler);
 
+// getTickerNews("RCAT")
 //passes in ticker
 //articles for specific tickers
 // let getTickerNews = function (ticker) {
