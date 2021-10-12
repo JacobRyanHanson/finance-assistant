@@ -47,7 +47,7 @@ function getFeaturedNews() {
 }
 // Gets stock prices.
 function stockApi(ticker) {
-    let apiUrl = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p";
+    let apiUrl = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p`;
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
