@@ -17,6 +17,17 @@ var aboutModal = document.querySelector(".list-item-2")
 var modalbg = document.querySelector(".modal-bg")
 var closeBtn = document.getElementById("close-button")
 
+// class customError {
+//     constructor(type, message) {
+//         this.type = type
+//         this.message = message
+//     }
+// }
+
+// $(function() {
+//     var error = $('error')
+//   });
+
 getFeaturedNews();
 // Gets featured news.
 function getFeaturedNews() {
@@ -97,7 +108,7 @@ function displayModal (text){
     $('#warningBox').hide()
     $('#successBox').hide()
     $('#alertBox').css("background-color",alertColor);
-    $('#alert').text(text)
+    $('#alert').text(`     ${text}`)
     popup.open();
 }
 

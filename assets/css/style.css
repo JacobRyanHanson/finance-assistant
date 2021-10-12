@@ -115,6 +115,9 @@ header ul>* {
 	border-radius: 10px;
 }
 
+.white-text {
+    color: #fefefe;
+}
 /* 
 
 
@@ -162,9 +165,9 @@ header ul>* {
 p {
   text-align: center;
   background-color: #fff;
-}
+}*/
 #close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-} */
+} 
