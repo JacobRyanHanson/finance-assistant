@@ -21,6 +21,7 @@ var aboutModal = document.querySelector(".list-item-2")
 var modalbg = document.querySelector(".modal-bg")
 var closeBtn = document.getElementById("close-button")
 var pastSearches = []
+
 // class customError {
 //     constructor(type, message) {
 //         this.type = type
@@ -31,6 +32,11 @@ var pastSearches = []
 // $(function() {
 //     var error = $('error')
 //   });
+
+$(window).ready(function() {
+    console.log('ready')
+    addLocalStorageToScreen()       
+})
 
 getFeaturedNews();
 // Gets featured news.
@@ -69,7 +75,7 @@ function stockApi(ticker) {
                     priceForm.querySelector(".high").textContent = data.results[0].h;
                     priceForm.querySelector(".low").textContent = data.results[0].l;
                     priceForm.querySelector(".volume").textContent = data.results[0].v;
-                    addHistory(data)
+                    addToLocalStorage(data)
                 } else {
                     displayModal('Bad API Call')
                 }
@@ -123,61 +129,82 @@ $("#previous-close-price-form").submit(function (event) {
     var inputTest = $(".input-group-field").val().toUpperCase().trim()
     console.log(inputTest)
     event.preventDefault()
-
-
-    // console.log(todayDate);
-
-    stockApi(inputTest)
-    // fetch(modalUrl)
-    // .then(function (response) {
-    //     if (response.ok) {
-    //         console.log(response)
-    //         response.json().then(function(data) {
-    //             console.log(data)
-    //             addHistory(data)
-    //         })
-    //     }
-    // })
+    stockApi(inputTest) 
 })
 
-function addHistory(data) {
-    var todayDate = new Date().toISOString().slice(0, 10);
-    console.log(todayDate)
-    var html = $(`<div class="product-card">
+function addHistory(tickerObj, count) {
+    var html = $(`<div id=${count} class="product-card">
     <div class="product-card-thumbnail">
-    <h1>${data.ticker}</h1>
+    <h1>${tickerObj.ticker}</h1>
     </div>
     <ul class="card-list">
     <li>
-        <h2 class="product-card-title">Date: ${todayDate}</h2>
+        <h2 class="product-card-title">Date: ${tickerObj.date}</h2>
     </li>
     <li>
-        <h2 class="product-card-title">Close: ${data.results[0].c}</h2>
+        <h2 class="product-card-title">Close: ${tickerObj.close}</h2>
     </li>
     <li>
-        <h2 class="product-card-title">High: ${data.results[0].h}</h2>
+        <h2 class="product-card-title">High: ${tickerObj.high}</h2>
     </li>
     <li>
-        <h2 class="product-card-title">Low: ${data.results[0].l}</h2>
+        <h2 class="product-card-title">Low: ${tickerObj.low}</h2>
     </li>
     <li>
-        <h2 class="product-card-title">Open: ${data.results[0].o}</h2>
+        <h2 class="product-card-title">Open: ${tickerObj.open}</h2>
     </li>
     </ul>
     `)
 
-    if (!pastSearches.includes(data.ticker) && pastSearches.length < 8) {
-        pastSearches.push(data.ticker)
-        $('#history-div').append(html)
+    $('#history-div').append(html)
+}
+
+function addToLocalStorage(data) {
+    var today = new Date().toISOString().slice(0, 10)
+    var dataObj = {}
+    dataObj['date'] = today
+    dataObj['ticker'] = data.results[0].T
+    dataObj['close'] = data.results[0].c
+    dataObj['high'] = data.results[0].h
+    dataObj['low'] = data.results[0].l
+    dataObj['open'] = data.results[0].o
+
+    console.log('in addToLocalStorage function', dataObj.ticker)
+    if (!pastSearches.includes(data.ticker) && pastSearches.length < 2) {
+        pastSearches.push(dataObj)
+        // $('#history-div').append(html)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
-    } else if (pastSearches.length >= 8) {
-        pastSearches.shift()
-        pastSearches.push(data.ticker)
+
+        addLocalStorageToScreen()
+    } else if (pastSearches.length >= 2) {
+        console.log(pastSearches.shift())
+        pastSearches.push(dataObj)
         console.log('in elseif', pastSearches)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
+
+        addLocalStorageToScreen()
     }
 }
 
+function addLocalStorageToScreen() {
+    console.log('in addLocalStorageToScreen function')
+    $('#history-div').empty()
+    $('#history-div').append(`<h1 class="search-history">SEARCH HISTORY</h1>`)
+    var searchedStock = {}
+    var count = 0
+    if (localStorage.getItem('searchHistroy')) {
+        pastSearches = JSON.parse(localStorage.getItem('searchHistroy'))
+        for (const element of pastSearches) {            
+            $.each(pastSearches, function(i, val) {
+                searchedStock[i] = val
+            })
+            console.log(element);
+            addHistory(element, count)
+            count++
+        }
+        console.log(searchedStock);
+    }
+}
 // function formSubmitHandler(event) {
 //     event.preventDefault();
 //     var coinType = coinTypeInput.textContent().toUpperCase().trim();
