@@ -21,7 +21,7 @@ header ul {
 }
 
 header img {
-	height: 64px;
+	height: 4rem;
 	padding: 0 10px 14px 0;
 }
 
@@ -48,6 +48,7 @@ header ul>* {
 	margin-left: 5px;
 	margin-right: 5px;
 }
+
 #featured-articles {
 	position: relative;
 }
@@ -62,14 +63,13 @@ header ul>* {
 	border: #32343d solid 1px;
 }
 
-#featured-articles p
- {
+#featured-articles p {
 	padding: 10px;
 	color: #b4dde3;
 	margin: 0;
 	background: #32343d;
 	text-align: center;
-	
+
 }
 
 .featured-article-title {
@@ -95,7 +95,8 @@ header ul>* {
 	border-bottom-right-radius: 10px;
 }
 
-.price-form, .exchange-rates-form {
+.price-form,
+.exchange-rates-form {
 	background: #32343d;
 	color: #b4dde3;
 }
@@ -119,16 +120,17 @@ header ul>* {
 	flex-grow: 1;
 }
 
-.price-form, .exchange-rates-form {
+.price-form,
+.exchange-rates-form {
 	display: flex;
 	align-self: center;
-	margin-bottom: 20px;
 	border: #b4dde3 solid 1px;
 }
 
 .price-form {
 	flex-direction: column;
 	width: 95%;
+	margin-bottom: 20px;
 }
 
 .price-form p {
@@ -144,10 +146,22 @@ header ul>* {
 	flex-grow: 3;
 }
 
+.exchange-rates-flex-container p {
+	color: #b4dde3;
+	border: #b4dde3 solid 1px;
+	width: 96%;
+	align-self: center;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding: 20px;
+	text-align: center;
+	font-size: 1.3rem;
+}
 
 .exchange-rates-form {
 	width: 96%;
 }
+
 .exchange-rates-form .input-group {
 	margin-bottom: 0;
 }
@@ -165,58 +179,3 @@ header ul>* {
 	height: 100%;
 	font-size: 1rem;
 }
-
-
-/* 
-
-
-.list-item-1,
-.list-item-2,
-.list-item-3 {
-  cursor: pointer;
-  transition: 0.5s;
-}
-.list-item-1:hover,
-.list-item-2:hover,
-.list-item-3:hover {
-  color: cornflowerblue;
-  transition: 0.5s;
-}
-.modal-bg {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s;
-}
-.bg-active {
-  visibility: visible;
-  opacity: 1;
-}
-.modal {
-  position: relative;
-  background-color: #fff;
-  width: 50%;
-  height: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-}
-.modal,
-p {
-  text-align: center;
-  background-color: #fff;
-}
-#close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-} */
