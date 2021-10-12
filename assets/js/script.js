@@ -112,7 +112,7 @@ let display = function (data, coin, volume) {
 
 // Getting the Crypto Price
 let getCryptoPrice = function (ticker) {
-    let date = moment().subtract(1, "days").format("YYYY-MM-DD");
+    let date = moment().format("YYYY-MM-DD");
     let apiUrl = `https://api.polygon.io/v1/open-close/crypto/${ticker}/USD/${date}?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`
     fetch(apiUrl)
         .then(function (response) {
