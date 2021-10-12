@@ -174,3 +174,5 @@ let getCryptoPrice = function (ticker) {
 
 //         })
 //}
+
+
