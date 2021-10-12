@@ -4,10 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/images/favicon.jpg" />
     <title>Finance Assistant</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+
+
 </head>
 
 <body>
@@ -22,8 +28,9 @@
                 <nav>
                     <ul>
                         <li><a href="#featured-articles">Featured Articles</a></li>
-                        <li><a href="">Prices</a></li>
-                        <li><a href="">Exchange Rates</a></li>
+                        <li><a href="#previous-close-price-form">Price Index</a></li>
+                        <li><a href="#exchange-rates-id">Exchange Rates</a></li>
+                        <li><a href="#">Search History</a></li>
                     </ul>
                 </nav>
             </div>
@@ -64,62 +71,89 @@
         </div>
 
         <div class='grid-x forms'>
-            <form class="price-form">
-                <div class="input-group">
-                    <span class="input-group-label">Stock/Cryptocurrency</span>
-                    <input class="input-group-field" type="text" placeholder="GOOGL">
-                    <div class="input-group-button">
-                        <input type="submit" class="button" value="Submit">
+            <div class="price-index-flex-container">
+                <h2>Price Index (Previous Close)</h2>
+
+                <form id="previous-close-price-form" class="price-form">
+                    <div class="input-group">
+                        <span class="input-group-label">Stock/Cryptocurrency</span>
+                        <input class="input-group-field"  data-toggle-focus="form-callout"type="text" placeholder="GOOGL">
+                        <div class="secondary callout is-hidden" id="form-callout" data-toggler="is-hidden">
+                            <p>Hello there</p>
+                        </div>
+                        <div class="input-group-button">
+                            <input type="submit" class="button" value="Submit">
+                        </div>
                     </div>
-                </div>
 
-                <p>Open: </p>
-                <p>High: </p>
-                <p>Low: </p>
-                <p>Volume: </p>
+                    <p>Open: <span class="open">0</span></p>
+                    <p>High: <span class="high">0</span></p>
+                    <p>Low: <span class="low">0</span></p>
+                    <p>Volume: <span class="volume">0</span></p>
+                </form>
+            </div>
 
+            <div class="exchange-rates-flex-container">
+                <h2>Exchange Rates</h2>
 
-                <div>
+                <form id="exchange-rates-id" class="exchange-rates-form">
+                    <div class='input-container'>
+                        <div class="input-group">
+                            <span class="input-group-label">Cryptocurrency (Base)</span>
+                            <input class="input-group-field" type="text" placeholder="BTC">
+                        </div>
 
-                </div>
+                        <div class="input-group">
+                            <span class="input-group-label">Cryptocurrency (Exchange)</span>
+                            <input class="input-group-field" type="text" placeholder="ETH">
+                        </div>
 
-                <!-- <label>Stock/Cryptocurrency </label>
-                <input type="text" placeholder="BTC" class="coin-type">
-            
-                <label>Convert to: </label>
-                <input type="text" placeholder="ETH" class="convert-type">
-            
-                <label>Amount: </label>
-                <input type="text" placeholder="1" class="volume">
-            
-                <button type="submit" class="success button">Submit</button> -->
-            </form>
+                        <div class="input-group">
+                            <span class="input-group-label">Conversion Amount</span>
+                            <input class="input-group-field" type="text" placeholder="0">
+                        </div>
+                    </div>
+
+                    <input type="submit" class="button" value="Submit">
+                </form>
+            </div>
         </div>
-        
+
+
     </main>
-    <!-- About Modal Section -->
-    <!-- <div class="modal-bg">
-        <div class="modal" id="about-modal">
 
-            <h2>About Us</h2>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus ligula, laoreet ac pulvinar id,
-                gravida eu est. Donec dictum augue aliquam efficitur semper. Donec semper dignissim nibh, nec cursus
-                lectus euismod at. Maecenas ipsum risus, pellentesque vel gravida ut, venenatis gravida urna.
-                Duis ornare sapien ac quam imperdiet, id rhoncus dolor egestas. Phasellus lacinia risus at nisi luctus,
-                quis maximus elit rutrum. Nam et elit fermentum,
-                tincidunt sapien eget, mattis felis. Curabitur luctus in sem ut consequat. Sed non interdum</p>
-            <button class="button" type="button" id="close-button">X</button>
 
+    <div class="reveal" id="exampleModal1" data-reveal>
+
+        <div data-closable id='alertBox' class="alert-box callout alert highlighted green">
+            <i class="fa fa-ban" aria-hidden="true"></i><span id="alert">ALERT!</span>
+            <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                <span aria-hidden="true">&CircleTimes;</span>
+            </button> -->
         </div>
-    </div> -->
-    <!-- Start Of Main Section-->
 
+        <div data-closable id='warningBox' class="alert-box callout warning">
+            <i class="fa fa-exclamation-triangle"></i> Warning...
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                <span aria-hidden="true">&CircleTimes;</span>
+            </button>
+        </div>
 
-
+        <div data-closable id='successBox' class="alert-box callout success">
+            <i class="fa fa-check"></i> Success!
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                <span aria-hidden="true">&CircleTimes;</span>
+            </button>
+        </div>
+        <!-- </div> -->
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+    integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 <script src="assets/js/script.js"></script>
 
 </html>
