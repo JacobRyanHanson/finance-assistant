@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/favicon.jpg" />
     <title>Finance Assistant</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
@@ -17,7 +14,6 @@
 </head>
 
 <body>
-    <!-- Start Of Header-->
     <header>
         <div class="grid-x">
             <div class="cell">
@@ -56,7 +52,6 @@
             <a href="" class="article-2">
                 <p class="featured-article-title"></p>
                 <div href="" class="featured-image">
-
                     <p class="featured-article-author"></p>
                 </div>
             </a>
@@ -64,7 +59,6 @@
             <a href="" class="article-3">
                 <p class="featured-article-title"></p>
                 <div href="" class="featured-image">
-
                     <p class="featured-article-author"></p>
                 </div>
             </a>
@@ -72,15 +66,12 @@
 
         <div class='grid-x forms'>
             <div class="price-index-flex-container">
-                <h2>Price Index (Previous Close)</h2>
+                <h2>Price Index <span class="price-date"></span></h2>
 
                 <form id="previous-close-price-form" class="price-form">
                     <div class="input-group">
                         <span class="input-group-label">Stock/Cryptocurrency</span>
-                        <input class="input-group-field"  data-toggle-focus="form-callout"type="text" placeholder="GOOGL">
-                        <div class="secondary callout is-hidden" id="form-callout" data-toggler="is-hidden">
-                            <p>Hello there</p>
-                        </div>
+                        <input class="input-group-field price-input" type="text" placeholder="GOOGL">
                         <div class="input-group-button">
                             <input type="submit" class="button" value="Submit">
                         </div>
@@ -94,32 +85,32 @@
             </div>
 
             <div class="exchange-rates-flex-container">
-                <h2>Exchange Rates</h2>
+                <h2>Exchange Rates (<span class="date"></span>)</h2>
 
                 <form id="exchange-rates-id" class="exchange-rates-form">
                     <div class='input-container'>
                         <div class="input-group">
                             <span class="input-group-label">Cryptocurrency (Base)</span>
-                            <input class="input-group-field" type="text" placeholder="BTC">
+                            <input class="input-group-field base-input" type="text" placeholder="BTC">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-label">Cryptocurrency (Exchange)</span>
-                            <input class="input-group-field" type="text" placeholder="ETH">
+                            <input class="input-group-field exchange-input" type="text" placeholder="ETH">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-label">Conversion Amount</span>
-                            <input class="input-group-field" type="text" placeholder="0">
+                            <input class="input-group-field volume-input" type="text" placeholder="0">
                         </div>
                     </div>
 
                     <input type="submit" class="button" value="Submit">
                 </form>
+
+                <p>Amount base = apiamount exchange</p>
             </div>
         </div>
-
-
     </main>
 
 
@@ -152,6 +143,8 @@
     </div>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
     integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 <script src="assets/js/script.js"></script>
