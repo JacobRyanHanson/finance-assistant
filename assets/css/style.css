@@ -192,6 +192,7 @@ header ul>* {
   min-width: 13rem;  
   opacity: 1;
   color: #b4dde3;
+  z-index: 1;
 }
 
 .search-history {
@@ -200,7 +201,8 @@ header ul>* {
 	position: absolute;
 	opacity: 0.15;
 	text-justify: center;
-	padding-top: 8%;	
+	padding-top: 8%;
+	z-index: -1;	
 }
 
 .product-card-thumbnail {

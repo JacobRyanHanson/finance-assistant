@@ -132,6 +132,11 @@ $("#previous-close-price-form").submit(function (event) {
     stockApi(inputTest) 
 })
 
+$( ".card-list" ).click(function(event) {
+    console.log("clicked: " + event.target);
+});
+  
+
 function addHistory(tickerObj, count) {
     var html = $(`<div id=${count} class="product-card">
     <div class="product-card-thumbnail">
