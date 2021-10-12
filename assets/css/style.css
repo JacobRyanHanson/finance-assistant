@@ -148,7 +148,6 @@ header ul>* {
 
 .exchange-rates-flex-container p {
 	color: #b4dde3;
-	border: #b4dde3 solid 1px;
 	width: 96%;
 	align-self: center;
 	margin-top: auto;
@@ -156,6 +155,10 @@ header ul>* {
 	padding: 20px;
 	text-align: center;
 	font-size: 1.3rem;
+}
+
+.border-visable {
+	border: #b4dde3 solid 1px;
 }
 
 .exchange-rates-form {

@@ -67,10 +67,16 @@ function exchangeFormSubmitHandler(event) {
     var exchangeInput = exchangeForm.querySelector(".exchange-input").value.toUpperCase().trim();
     var volumeInput = exchangeForm.querySelector(".volume-input").value.toUpperCase().trim();
 
-
+    if (baseInput && exchangeInput && volumeInput) {
+        if (parseFloat(volumeInput)) {
+            getInfo(baseInput, exchangeInput, volumeInput);
+        } else {
+            alert("Please enter a number for Conversion Amount")
+        }
+    } else {
+        alert("Please fill all inputs in the form")
+    }
 }
-
-document.querySelector(".price-date").textContent = "(" + getPreviousDate() + ")";
 
 // Gets stock prices.
 function stockApi(ticker) {
@@ -79,14 +85,18 @@ function stockApi(ticker) {
         if (response.ok) {
             response.json().then(function (data) {
                 // console.log(data);
-                priceForm.querySelector(".open").textContent = data.open;
-                priceForm.querySelector(".high").textContent = data.high;
-                priceForm.querySelector(".low").textContent = data.low;
-                priceForm.querySelector(".volume").textContent = data.volume;
+                priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
+                priceForm.querySelector(".high").textContent = "$" + data.high.toFixed(2);
+                priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);
+                priceForm.querySelector(".volume").textContent = data.volume.toFixed(2);
             });
         } else if (response.status === 404) {
             getCryptoPrice(ticker);
+        } else {
+            alert("Unexpected Error")
         }
+    }).catch(function () {
+        alert("Unable to connect to Polygon");
     });
 }
 
@@ -96,37 +106,54 @@ function getCryptoPrice(ticker) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
-                priceForm.querySelector(".open").textContent = data.open;
-                priceForm.querySelector(".high").textContent = "--";
-                priceForm.querySelector(".low").textContent = "--";
-                priceForm.querySelector(".volume").textContent = "--";
+                if (data.close > 0) {
+                    priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
+                    priceForm.querySelector(".high").textContent = "--";
+                    priceForm.querySelector(".low").textContent = "--";
+                    priceForm.querySelector(".volume").textContent = "--";
+                } else {
+                    alert("Not found");
+                } 
             });
+        } else {
+            alert("Unexpected Error");
         }
+    }).catch(function () {
+        alert("Unable to connect to Polygon");
     });
 }
 
 function getInfo(coin, exchange, vol) {
-    let apiUrl = `https://rest-sandbox.coinapi.io/v1/exchangerate/${coin}?apikey=09391D71-51BB-4594-A7C1-9AE2C45D8099`;
+    let apiUrl = "https://rest-sandbox.coinapi.io/v1/exchangerate/" + coin + "?apikey=09391D71-51BB-4594-A7C1-9AE2C45D8099";
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data)
-                display(data, exchange, vol);
-
-            })
+                if (data.rates.length === 0) {
+                    alert("Did not regonise Cryptocurrency (Base)");
+                } else {
+                    var updated = false;
+                    for (let i = 0; i < data.rates.length; i++) {
+                        if (exchange === data.rates[i].asset_id_quote) {
+                            document.querySelector(".exchange-rates-flex-container p").className = "border-visable";
+                            document.querySelector(".base-amount").textContent = vol + " ";
+                            document.querySelector(".base").textContent = coin + " = ";
+                            document.querySelector(".exchange-amount").textContent = (data.rates[i].rate * vol).toFixed(2) + " ";
+                            document.querySelector(".exchange").textContent = exchange;
+                            updated = true;
+                        }
+                    }
+                    if (!updated) {
+                        alert("Did not regonise Cryptocurrency (Exchange)")
+                    }
+                }
+            });
+        } else {
+            alert("Unexpected error")
         }
-    })
-}
-
-let display = function (data, coin, volume) {
-    let exchange = coin;
-    for (let i = 0; i < data.rates.length; i++) {
-        if (exchange == data.rates[i].asset_id_quote) {
-            // dynamicly put the result on the page instead of window alert
-            // window.alert((data.rates[i].rate) * volume)
-        }
-    }
+    }).catch(function () {
+        alert("Unable to connect to Sandbox");
+    });
 }
 
 function getPreviousDate() {
@@ -136,7 +163,7 @@ function getPreviousDate() {
     date += (d.getDate() - 1);
     return date;
 }
-
+//----------------------------------------------------------------------------------------------------------
 
 
 // // Makes About Modal Visible
