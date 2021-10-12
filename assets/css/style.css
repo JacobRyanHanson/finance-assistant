@@ -38,6 +38,10 @@ header ul {
 	font-size: 1.5rem;
 }
 
+header li {
+	border-bottom: #b4dde3 solid 2px;
+}
+
 header ul>* {
 	list-style-type: none;
 	display: inline;
@@ -53,7 +57,7 @@ header ul>* {
 	flex-direction: column;
 	flex-grow: 1;
 	flex-basis: 0%;
-	height: 320px;
+	height: 400px;
 	margin: 20px;
 	border: #32343d solid 1px;
 }
@@ -91,14 +95,40 @@ header ul>* {
 	border-bottom-right-radius: 10px;
 }
 
-.price-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+.price-form, .exchange-rates-form {
 	background: #32343d;
 	color: #b4dde3;
+}
+
+.price-index-flex-container h2,
+.exchange-rates-flex-container h2 {
+	font-size: 2rem;
+	margin: 5px 0 5px 15px;
+	color: #b4dde3;
+}
+
+.price-index-flex-container,
+.exchange-rates-flex-container {
+	display: flex;
+	flex-direction: column;
 	margin: 20px;
-	height: 260px;
+	background: #32343d;
+}
+
+.price-index-flex-container {
+	flex-grow: 1;
+}
+
+.price-form, .exchange-rates-form {
+	display: flex;
+	align-self: center;
+	margin-bottom: 20px;
+	border: #b4dde3 solid 1px;
+}
+
+.price-form {
+	flex-direction: column;
+	width: 95%;
 }
 
 .price-form p {
@@ -110,10 +140,32 @@ header ul>* {
 	border: #b4dde3 solid 1px;
 }
 
-.previous-close {
-	align-self: center;
-	border-radius: 10px;
+.exchange-rates-flex-container {
+	flex-grow: 3;
 }
+
+
+.exchange-rates-form {
+	width: 96%;
+}
+.exchange-rates-form .input-group {
+	margin-bottom: 0;
+}
+
+.exchange-rates-form .input-group-label {
+	width: 33%;
+}
+
+.exchange-rates-form .input-container {
+	width: 88%;
+}
+
+.exchange-rates-form .button {
+	width: 12%;
+	height: 100%;
+	font-size: 1rem;
+}
+
 
 .white-text {
     color: #fefefe;
