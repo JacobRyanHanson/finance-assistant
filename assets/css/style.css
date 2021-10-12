@@ -182,3 +182,130 @@ header ul>* {
 	height: 100%;
 	font-size: 1rem;
 }
+
+.white-text {
+    color: #fefefe;
+}
+
+.card-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: transparent;
+  
+}
+
+.card-list {
+  list-style-type: none;
+  margin: 0;
+}
+
+.product-card {
+  background-color: #32343d;
+  border: 1px solid #e6e6e6;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  min-width: 13rem;  
+  opacity: 1;
+  color: #b4dde3;
+  z-index: 1;
+}
+
+.search-history {
+	font-size: 7rem;
+	text-align: center;
+	position: absolute;
+	opacity: 0.15;
+	text-justify: center;
+	padding-top: 8%;
+	z-index: -1;	
+}
+
+.product-card-thumbnail {
+  display: block;
+  position: relative;
+  border-bottom: 2px solid #b4dde3;
+  text-align: center;
+}
+
+.product-card-title {
+  font-family: 'Open sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.product-card-sale {
+  color: #cacaca;
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-left: 0.3rem;
+  text-decoration: line-through;
+}
+
+.product-card-colors {
+  display: block;
+  margin-top: 0.8rem;
+}
+
+.product-card-color-option {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+
+/* 
+
+
+.list-item-1,
+.list-item-2,
+.list-item-3 {
+  cursor: pointer;
+  transition: 0.5s;
+}
+.list-item-1:hover,
+.list-item-2:hover,
+.list-item-3:hover {
+  color: cornflowerblue;
+  transition: 0.5s;
+}
+.modal-bg {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s;
+}
+.bg-active {
+  visibility: visible;
+  opacity: 1;
+}
+.modal {
+  position: relative;
+  background-color: #fff;
+  width: 50%;
+  height: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.modal,
+p {
+  text-align: center;
+  background-color: #fff;
+}*/
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+} 

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/favicon.jpg" />
     <title>Finance Assistant</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/192a95a915.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
@@ -114,6 +116,8 @@
                 </p>
             </div>
         </div>
+        <div id="history-div" class="card-div"></div>
+        
     </main>
     <!-- About Modal Section -->
     <!-- <div class="modal-bg">
@@ -133,11 +137,11 @@
     </div> -->
     <!-- Start Of Main Section-->
 
-
+    <!-- error handling html Modal  -->
     <div class="reveal" id="exampleModal1" data-reveal>
 
-        <div data-closable id='alertBox' class="alert-box callout alert highlighted green">
-            <i class="fa fa-ban" aria-hidden="true"></i><span id="alert">ALERT!</span>
+        <div data-closable id='alertBox'class="alert-box callout alert">
+            <i class="fa fa-ban white-text" aria-hidden="true"></i><span id="alert" class="white-text">ALERT!</span>
             <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
                 <span aria-hidden="true">&CircleTimes;</span>
             </button> -->
@@ -145,16 +149,16 @@
 
         <div data-closable id='warningBox' class="alert-box callout warning">
             <i class="fa fa-exclamation-triangle"></i> Warning...
-            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
                 <span aria-hidden="true">&CircleTimes;</span>
-            </button>
+            </button> -->
         </div>
 
         <div data-closable id='successBox' class="alert-box callout success">
             <i class="fa fa-check"></i> Success!
-            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
                 <span aria-hidden="true">&CircleTimes;</span>
-            </button>
+            </button> -->
         </div>
         <!-- </div> -->
         <button class="close-button" data-close aria-label="Close reveal" type="button">
