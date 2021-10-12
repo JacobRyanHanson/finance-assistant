@@ -1,3 +1,7 @@
+//TODO: Search History
+//TODO: Make Forms Work
+//TODO: Make Modals Work
+
 var featuredArticles = [
     document.querySelector(".article-0"),
     document.querySelector(".article-1"),
@@ -23,10 +27,10 @@ function getFeaturedNews() {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
+                // console.log(data);
                 for (var i = 0; i < featuredArticles.length; i++) {
                     featuredArticles[i].setAttribute("href", data.results[i].article_url);
-                    if (data.results[i].article_url) {
+                    if (data.results[i].image_url) {
                         featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('" + data.results[i].image_url + "')";
                     } else {
                         featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('./assets/images/piggy-bank-icon.jpg')";
@@ -39,14 +43,13 @@ function getFeaturedNews() {
         }
     });
 }
-stockApi("GOOGL");
 // Gets stock prices.
 function stockApi(ticker) {
     let apiUrl = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p";
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
+                // console.log(data);
                 priceForm.querySelector(".open").textContent = data.results[0].o;
                 priceForm.querySelector(".high").textContent = data.results[0].h;
                 priceForm.querySelector(".low").textContent = data.results[0].l;
@@ -56,6 +59,33 @@ function stockApi(ticker) {
         }
     });
 }
+
+getInfo("BTC", "ETH", 1);
+
+function getInfo(coin, exchange, vol) {
+    let apiUrl = `https://rest-sandbox.coinapi.io/v1/exchangerate/${coin}?apikey=09391D71-51BB-4594-A7C1-9AE2C45D8099`;
+    fetch(apiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data)
+                    display(data, exchange, vol);
+
+                })
+            }
+        })
+}
+
+let display = function (data, coin, volume) {
+    let exchange = coin;
+    for (let i = 0; i < data.rates.length; i++) {
+        if (exchange == data.rates[i].asset_id_quote) {
+            // dynamicly put the result on the page instead of window alert
+            // window.alert((data.rates[i].rate) * volume)
+        }
+    }
+}
+
 
 // // Makes About Modal Visible
 // aboutModal.addEventListener('click',function(){
@@ -87,27 +117,7 @@ function formSubmitHandler(event) {
     }
 }
 
-let getInfo = function (coin, exchange, vol) {
-    let apiUrl = `https://rest-sandbox.coinapi.io/v1/exchangerate/${coin}?apikey=09391D71-51BB-4594-A7C1-9AE2C45D8099`;
-    fetch(apiUrl)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    display(data, exchange, vol);
 
-                })
-            }
-        })
-}
-let display = function (data, coin, volume) {
-    let exchange = coin;
-    for (let i = 0; i < data.rates.length; i++) {
-        if (exchange == data.rates[i].asset_id_quote) {
-            // dynamicly put the result on the page instead of window alert
-            window.alert((data.rates[i].rate) * volume)
-        }
-    }
-}
 
 
 
