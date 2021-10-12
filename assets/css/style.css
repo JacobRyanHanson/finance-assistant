@@ -1,222 +1,178 @@
 * {
-	box-sizing: border-box !important;
+  box-sizing: border-box !important;
 }
 
 header .cell {
-	display: flex;
-	align-items: center;
-	background: #32343d;
-	padding: 10px;
+  display: flex;
+  align-items: center;
+  background: #32343d;
+  padding: 10px;
 }
 
 header a,
 header a:hover {
-	color: #b4dde3;
+  color: #b4dde3;
 }
 
 header h1,
 header nav,
 header ul {
-	display: inline;
+  display: inline;
 }
 
 header img {
-	height: 64px;
-	padding: 0 10px 14px 0;
+  height: 64px;
+  padding: 0 10px 14px 0;
 }
 
 header h1 {
-	font-weight: bold;
-	height: min-content;
+  font-weight: bold;
+  height: min-content;
 }
 
 header nav {
-	margin-left: auto;
+  margin-left: auto;
 }
 
 header ul {
-	font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
-header li {
-	border-bottom: #b4dde3 solid 2px;
+header li:hover {
+  border-bottom: #b4dde3 solid 2px;
+  transition: 0.5s;
 }
 
-header ul>* {
-	list-style-type: none;
-	display: inline;
-	margin-left: 5px;
-	margin-right: 5px;
+header ul > * {
+  list-style-type: none;
+  display: inline;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 #featured-articles {
-	position: relative;
+  position: relative;
 }
 
-#featured-articles>* {
-	display: flex;
-	flex-direction: column;
-	flex-grow: 1;
-	flex-basis: 0%;
-	height: 400px;
-	margin: 20px;
-	border: #32343d solid 1px;
+#featured-articles > * {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 0%;
+  height: 400px;
+  margin: 20px;
+  border: #32343d solid 1px;
+  box-shadow: 0px 0px 7px black;
+}
+#featured-articles > *:hover {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 0%;
+  height: 400px;
+  margin: 20px;
+  border: #32343d solid 1px;
+  box-shadow: 1px 1px 5px;
 }
 
-#featured-articles p
- {
-	padding: 10px;
-	color: #b4dde3;
-	margin: 0;
-	background: #32343d;
-	text-align: center;
-	
+#featured-articles p {
+  padding: 10px;
+  color: #b4dde3;
+  margin: 0;
+  background: #32343d;
+  text-align: center;
 }
 
 .featured-article-title {
-	font-weight: bold;
-	font-size: 1rem;
-	margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 5px;
 }
 
 .featured-image {
-	height: 100%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-image: url("../images/piggy-bank-icon.jpg");
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../images/piggy-bank-icon.jpg");
 }
 
 .featured-article-author {
-	display: inline;
-	position: absolute;
-	top: 80%;
-	font-size: 1rem;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
+  display: inline;
+  position: absolute;
+  top: 80%;
+  font-size: 1rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.price-form, .exchange-rates-form {
-	background: #32343d;
-	color: #b4dde3;
+.price-form,
+.exchange-rates-form {
+  background: #32343d;
+  color: #b4dde3;
 }
 
 .price-index-flex-container h2,
 .exchange-rates-flex-container h2 {
-	font-size: 2rem;
-	margin: 5px 0 5px 15px;
-	color: #b4dde3;
+  font-size: 2rem;
+  margin: 5px 0 5px 15px;
+  color: #b4dde3;
 }
 
 .price-index-flex-container,
 .exchange-rates-flex-container {
-	display: flex;
-	flex-direction: column;
-	margin: 20px;
-	background: #32343d;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  background: #32343d;
 }
 
 .price-index-flex-container {
-	flex-grow: 1;
+  flex-grow: 1;
 }
 
-.price-form, .exchange-rates-form {
-	display: flex;
-	align-self: center;
-	margin-bottom: 20px;
-	border: #b4dde3 solid 1px;
+.price-form,
+.exchange-rates-form {
+  display: flex;
+  align-self: center;
+  margin-bottom: 20px;
+  border: #b4dde3 solid 1px;
 }
 
 .price-form {
-	flex-direction: column;
-	width: 95%;
+  flex-direction: column;
+  width: 95%;
 }
 
 .price-form p {
-	display: flex;
-	justify-content: space-between;
-	margin-left: 10px;
-	margin-right: 10px;
-	padding: 5px;
-	border: #b4dde3 solid 1px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  border: #b4dde3 solid 1px;
 }
 
 .exchange-rates-flex-container {
-	flex-grow: 3;
+  flex-grow: 3;
 }
-
 
 .exchange-rates-form {
-	width: 96%;
+  width: 96%;
 }
 .exchange-rates-form .input-group {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .exchange-rates-form .input-group-label {
-	width: 33%;
+  width: 33%;
 }
 
 .exchange-rates-form .input-container {
-	width: 88%;
+  width: 88%;
 }
 
 .exchange-rates-form .button {
-	width: 12%;
-	height: 100%;
-	font-size: 1rem;
+  width: 12%;
+  height: 100%;
+  font-size: 1rem;
 }
-
-
-/* 
-
-
-.list-item-1,
-.list-item-2,
-.list-item-3 {
-  cursor: pointer;
-  transition: 0.5s;
-}
-.list-item-1:hover,
-.list-item-2:hover,
-.list-item-3:hover {
-  color: cornflowerblue;
-  transition: 0.5s;
-}
-.modal-bg {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s;
-}
-.bg-active {
-  visibility: visible;
-  opacity: 1;
-}
-.modal {
-  position: relative;
-  background-color: #fff;
-  width: 50%;
-  height: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-}
-.modal,
-p {
-  text-align: center;
-  background-color: #fff;
-}
-#close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-} */

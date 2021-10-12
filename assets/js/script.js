@@ -87,16 +87,6 @@ let display = function (data, coin, volume) {
     }
 }
 
-
-// // Makes About Modal Visible
-// aboutModal.addEventListener('click',function(){
-//     modalbg.classList.add("bg-active");
-// });
-// // Closes About modal
-// closeBtn.addEventListener('click',function(){
-//     modalbg.classList.remove("bg-active");
-// });
-
 function formSubmitHandler(event) {
     event.preventDefault();
     var coinType = coinTypeInput.value.toUpperCase().trim();
