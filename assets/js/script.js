@@ -52,6 +52,8 @@ function getFeaturedNews() {
                     featuredArticles[i].querySelector(".featured-article-author").textContent = data.results[i].publisher.name;
                 }
             });
+        } else {
+            displayModal('Bad API Call')
         }
     });
 }
@@ -62,12 +64,18 @@ function stockApi(ticker) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
-                priceForm.querySelector(".open").textContent = data.results[0].o;
-                priceForm.querySelector(".high").textContent = data.results[0].h;
-                priceForm.querySelector(".low").textContent = data.results[0].l;
-                priceForm.querySelector(".volume").textContent = data.results[0].v;
-                addHistory(data)
+                if (data.resultsCount != 0) {
+                    priceForm.querySelector(".open").textContent = data.results[0].o;
+                    priceForm.querySelector(".high").textContent = data.results[0].h;
+                    priceForm.querySelector(".low").textContent = data.results[0].l;
+                    priceForm.querySelector(".volume").textContent = data.results[0].v;
+                    addHistory(data)
+                } else {
+                    displayModal('Bad API Call')
+                }
             });
+        } else {
+            displayModal('Bad API Call')
         }
     });
 }
@@ -84,6 +92,8 @@ function getInfo(coin, exchange, vol) {
                     display(data, exchange, vol);
 
                 })
+            } else {
+                displayModal('Bad API Call')
             }
         })
 }
@@ -114,7 +124,7 @@ $("#previous-close-price-form").submit(function (event) {
     console.log(inputTest)
     event.preventDefault()
 
-    
+
     // console.log(todayDate);
 
     stockApi(inputTest)
@@ -130,7 +140,7 @@ $("#previous-close-price-form").submit(function (event) {
     // })
 })
 
-function addHistory(data){
+function addHistory(data) {
     var todayDate = new Date().toISOString().slice(0, 10);
     console.log(todayDate)
     var html = $(`<div class="product-card">
@@ -155,9 +165,17 @@ function addHistory(data){
     </li>
     </ul>
     `)
-    $('#history-div').append(html)
-    pastSearches.push(data.ticker)
-    localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
+
+    if (!pastSearches.includes(data.ticker) && pastSearches.length < 8) {
+        pastSearches.push(data.ticker)
+        $('#history-div').append(html)
+        localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
+    } else if (pastSearches.length >= 8) {
+        pastSearches.shift()
+        pastSearches.push(data.ticker)
+        console.log('in elseif', pastSearches)
+        localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
+    }
 }
 
 // function formSubmitHandler(event) {
@@ -204,6 +222,8 @@ let getCryptoPrice = function (ticker) {
                 response.json().then(function (data) {
 
                 })
+            } else {
+                displayModal('Bad API Call')
             }
         })
 }
