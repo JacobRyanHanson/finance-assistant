@@ -1,33 +1,4 @@
-var run = $(document).foundation();
-
-var alertBox = $('#alert')
-console.log(alertBox);
-let apiUrl = "hps://api.polygon.io/v3/reference/tickers?ticker=BTC&active=true&sort=ticker&order=asc&limit=10&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg";
-    fetch(apiUrl)
-
-
-    .then(function(response) {
-        if (!response.ok) {
-            throw Error(response.statusText);
-        }
-        return response;
-    }).then(function(response) {
-        console.log("ok");
-    }).catch(function(error) {
-       update(error);
-        console.log(error);        
-    });
-
-    var update = function(error) {
-			
-			
-			var new_rgba_str ="rgba(215, 54, 29, 1)";	
-             
-
-            alertBox.text(error)
-            .css("background-color",new_rgba_str);
-     
-		}
+var popup = new Foundation.Reveal($('#exampleModal1'))
 var coinTypeInput = document.querySelector(".coin-type");
 var convertTypeInput = document.querySelector(".convert-type")
 var volumeInput = document.querySelector(".volume");
@@ -56,15 +27,31 @@ function formSubmitHandler(event) {
             if (typeof (volume) === "number" && volume > 0) {
                 getInfo(coinType, convertType, volume);
             } else {
-                alert("Please enter a valid amount!");
+                // alert("Please enter a valid amount!");
+                displayModal("Please enter a valid amount!")  
             }    
         } else {
-            alert("Please enter a valid stock or cryptocurrecty converstion!")
+            //alert("Please enter a valid stock or cryptocurrecty converstion!")
+            displayModal("Please enter a valid stock or cryptocurrecty converstion!")            
         }
     } else {
-        alert("Please enter a valid stock or cryptocurrency!");
+        //alert("Please enter a valid stock or cryptocurrency!");
+       
+
+                displayModal("Please enter a valid stock or cryptocurrency!")
     }
 }
+
+function displayModal (text){
+    var new_rgba_str ="rgba(215, 54, 29, 1)";	
+            
+    $('#warningBox').hide()
+    $('#successBox').hide()
+    $('#alertBox').css("background-color",new_rgba_str);
+    $('#alert').text(text)
+    popup.open();
+}
+
 
 let getInfo = function (coin, exchange, vol) {
     let apiUrl = `https://rest-sandbox.coinapi.io/v1/exchangerate/${coin}?apikey=09391D71-51BB-4594-A7C1-9AE2C45D8099`;
