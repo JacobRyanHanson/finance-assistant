@@ -31,6 +31,7 @@ function getFeaturedNews() {
                 // console.log(data);
                 for (var i = 0; i < featuredArticles.length; i++) {
                     featuredArticles[i].setAttribute("href", data.results[i].article_url);
+                    featuredArticles[i].setAttribute("target", "_blank");
                     if (data.results[i].image_url) {
                         featuredArticles[i].querySelector(".featured-image").style.backgroundImage = "url('" + data.results[i].image_url + "')";
                     } else {
@@ -50,7 +51,7 @@ function stockApi(ticker) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                // console.log(data);
+                //console.log(data);
                 priceForm.querySelector(".open").textContent = data.results[0].o;
                 priceForm.querySelector(".high").textContent = data.results[0].h;
                 priceForm.querySelector(".low").textContent = data.results[0].l;
