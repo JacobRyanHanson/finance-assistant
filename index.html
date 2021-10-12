@@ -4,10 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/images/favicon.jpg"/>
     <title>Finance Assistant</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+        
+   
 </head>
 
 <body>
@@ -131,10 +137,38 @@
     <!-- Start Of Main Section-->
 
 
+    <div class="reveal" id="exampleModal1" data-reveal>
+
+        <div data-closable id='alertBox'class="alert-box callout alert highlighted green">
+            <i class="fa fa-ban" aria-hidden="true"></i><span id="alert">ALERT!</span>
+            <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                <span aria-hidden="true">&CircleTimes;</span>
+            </button> -->
+        </div>
+
+        <div data-closable id='warningBox' class="alert-box callout warning">
+            <i class="fa fa-exclamation-triangle"></i> Warning...
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                <span aria-hidden="true">&CircleTimes;</span>
+            </button>
+        </div>
+
+        <div data-closable id='successBox' class="alert-box callout success">
+            <i class="fa fa-check"></i> Success!
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                <span aria-hidden="true">&CircleTimes;</span>
+            </button>
+        </div>
+    <!-- </div> -->
+    <button class="close-button" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
 
 
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 <script src="assets/js/script.js"></script>
 
 </html>

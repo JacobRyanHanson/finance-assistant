@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href=assets/css/style.css>
+    <script src="https://use.fontawesome.com/192a95a915.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+
+    <title>Document</title>
+</head>
+<body>
+ <!--    TradingView Widget BEGIN -->
+<!-- <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+    {
+    "symbols": [
+      {
+        "proName": "FOREXCOM:SPXUSD",
+        "title": "S&P 500"
+      },
+      {
+        "proName": "FOREXCOM:NSXUSD",
+        "title": "Nasdaq 100"
+      },
+      {
+        "proName": "FX_IDC:EURUSD",
+        "title": "EUR/USD"
+      },
+      {
+        "proName": "BITSTAMP:BTCUSD",
+        "title": "BTC/USD"
+      },
+      {
+        "proName": "BITSTAMP:ETHUSD",
+        "title": "ETH/USD"
+      }
+    ],
+    "colorTheme": "light",
+    "isTransparent": false,
+    "showSymbolLogo": true,
+    "locale": "en"
+  };
+</script>
+</div> -->
+<!-- TradingView Widget END -->
+
+<!-- modal code from foundation -->
+<div class= "">
+    
+
+
+<div class="row">
+  <div class="columns">
+    <h2>Reveal (Modal)</h2>
+    <p>A modal is just an empty container, so you can put any kind of content inside it, from text to forms to video to an entire grid.</p>
+    <div class="callout primary">
+      <p>Please note that we removed the option for AJAX loaded modals in Foundation 6. We did make it very easy to implement on your own though, check out a sample in the <span><a href="//foundation.zurb.com/sites/docs/reveal.html#advanced-options">Advanced</a></span> section.</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns">
+    <p><a class="button" data-open="exampleModal1">Click me for a modal</a></p>
+
+    <div class="reveal" id="exampleModal1" data-reveal>
+      
+      <div data-closable class="alert-box callout alert highlighted green">
+        <i class="fa fa-ban" aria-hidden="true"></i><span id="alert">ALERT!</span>
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&CircleTimes;</span>
+        </button>
+    </div>
+
+    <div data-closable class="alert-box callout warning">
+        <i class="fa fa-exclamation-triangle"></i> Warning...
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&CircleTimes;</span>
+        </button>
+    </div>
+
+    <div data-closable class="alert-box callout success">
+        <i class="fa fa-check"></i> Success!
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&CircleTimes;</span>
+        </button>
+    </div>
+</div>
+      <button class="close-button" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+  <!-- Compressed JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+<script src="assets/js/script.js"></script>
+ 
+</body>
+</html>

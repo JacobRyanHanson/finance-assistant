@@ -2,6 +2,7 @@
 //TODO: Make Forms Work
 //TODO: Make Modals Work
 
+var popup = new Foundation.Reveal($('#exampleModal1'))
 var featuredArticles = [
     document.querySelector(".article-0"),
     document.querySelector(".article-1"),
@@ -107,18 +108,28 @@ function formSubmitHandler(event) {
             if (typeof (volume) === "number" && volume > 0) {
                 getInfo(coinType, convertType, volume);
             } else {
-                alert("Please enter a valid amount!");
+                // alert("Please enter a valid amount!");
+                displayModal("Please enter a valid amount!")                  
             }
         } else {
-            alert("Please enter a valid stock or cryptocurrecty converstion!")
+            //alert("Please enter a valid stock or cryptocurrecty converstion!")
+            displayModal("Please enter a valid stock or cryptocurrecty converstion!")            
         }
     } else {
-        alert("Please enter a valid stock or cryptocurrency!");
+        //alert("Please enter a valid stock or cryptocurrency!");
+        displayModal("Please enter a valid stock or cryptocurrency!")
     }
 }
 
-
-
+function displayModal (text){
+    var new_rgba_str ="rgba(215, 54, 29, 1)";	
+            
+    $('#warningBox').hide()
+    $('#successBox').hide()
+    $('#alertBox').css("background-color",new_rgba_str);
+    $('#alert').text(text)
+    popup.open();
+}
 
 
 // Getting the Crypto Price
@@ -151,4 +162,4 @@ let getCryptoPrice = function (ticker) {
 //         .catch(function (error) {
 
 //         })
-// }
+//}
