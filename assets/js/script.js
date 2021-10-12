@@ -90,13 +90,13 @@ function formSubmitHandler(event) {
         displayModal("Please enter a valid stock or cryptocurrency!")
     }
 }
-
+//for error handling
 function displayModal (text){
-    var new_rgba_str ="rgba(215, 54, 29, 1)";	
+    var alertColor ="rgba(215, 54, 29, 1)";	
             
     $('#warningBox').hide()
     $('#successBox').hide()
-    $('#alertBox').css("background-color",new_rgba_str);
+    $('#alertBox').css("background-color",alertColor);
     $('#alert').text(text)
     popup.open();
 }
