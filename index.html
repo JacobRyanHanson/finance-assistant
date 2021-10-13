@@ -27,11 +27,12 @@
                         <li><a href="#">Search History</a></li>
                     </ul>
                 </nav>
-            </div>
+            </div>            
         </div>
     </header>
 
     <main>
+        <!-- {{> ticker}} -->
         <div class="grid-x" id=featured-articles>
             <a href="" class="article-0">
                 <p class="featured-article-title"></p>
@@ -161,8 +162,7 @@
             <span aria-hidden="true">&CircleTimes;</span>
         </button>
     </div>        
-    </div>
-
+    </div>      
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -170,5 +170,35 @@
 <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
     integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 <script src="assets/js/script.js"></script>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+    {
+    "symbols": [
+      {
+        "proName": "FOREXCOM:SPXUSD",
+        "title": "S&P 500"
+      },
+      {
+        "proName": "FOREXCOM:NSXUSD",
+        "title": "Nasdaq 100"
+      },
+      {
+        "proName": "FX_IDC:EURUSD",
+        "title": "EUR/USD"
+      },
+      {
+        "proName": "BITSTAMP:BTCUSD",
+        "title": "BTC/USD"
+      },
+      {
+        "proName": "BITSTAMP:ETHUSD",
+        "title": "ETH/USD"
+      }
+    ],
+    "colorTheme": "light",
+    "isTransparent": false,
+    "showSymbolLogo": true,
+    "locale": "en"
+  };
+</script>
 
 </html>
