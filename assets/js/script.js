@@ -71,7 +71,6 @@ function exchangeFormSubmitHandler(event) {
 
 }
 
-document.querySelector(".price-date").textContent = "(" + getPreviousDate() + ")";
 
 // Gets stock prices.
 function stockApi(ticker) {
@@ -86,11 +85,12 @@ function stockApi(ticker) {
         }
     }
     let date = moment().subtract(counter, "days").format('YYYY-MM-DD');
+    document.querySelector(".price-date").textContent = "(" + date + ")";
     let apiUrl = `https://api.polygon.io/v1/open-close/${ticker}/${date}?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                // console.log(data);
+                console.log(data);
                 priceForm.querySelector(".open").textContent = data.open;
                 priceForm.querySelector(".high").textContent = data.high;
                 priceForm.querySelector(".low").textContent = data.low;
