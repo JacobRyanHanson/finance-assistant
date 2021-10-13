@@ -118,6 +118,7 @@ function getCryptoPrice(ticker) {
                     priceForm.querySelector(".high").textContent = "--";
                     priceForm.querySelector(".low").textContent = "--";
                     priceForm.querySelector(".volume").textContent = "--";
+                    addToLocalStorage(data)
                 } else {
                     displayModal("ALERT!:  Not found");
                 } 
@@ -226,6 +227,7 @@ function addToLocalStorage(data) {
     dataObj['open'] = data.open
     console.log('in addToLocalStorage function', dataObj.ticker)
     if (!pastSearches.includes(dataObj.ticker) && pastSearches.length < 7) {
+        console.log(!pastSearches.includes(dataObj.ticker))
         pastSearches.push(dataObj)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
 
@@ -282,6 +284,7 @@ function addLocalStorageToScreen() {
 //         displayModal("ALERT!:  Please enter a valid stock or cryptocurrency!")
 //     }
 // }
+
 //for error handling
 function displayModal(text) {
     var alertColor = "rgba(215, 54, 29, 1)";
