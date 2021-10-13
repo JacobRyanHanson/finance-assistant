@@ -220,7 +220,6 @@ function addHistory(tickerObj, count) {
 function checkForDuplicates(ticker) {
     var tempSearch = []
     pastSearches = JSON.parse(localStorage.getItem('searchHistroy'))
-    // console.log("tempsearch",tempSearch);
     if (!jQuery.isEmptyObject(pastSearches)) {
         console.log('in if statement')
         for (const element of pastSearches) {
