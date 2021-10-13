@@ -94,16 +94,15 @@ function stockApi(ticker) {
         }
     }
     let date = moment().subtract(counter, "days").format('YYYY-MM-DD');
-    document.querySelector(".price-date").textContent = "(" + date + ")";
     let apiUrl = `https://api.polygon.io/v1/open-close/${ticker}/${date}?adjusted=true&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                // console.log(data);
+                document.querySelector(".price-date").textContent = "(" + date + ")";
+                priceForm.querySelector(".open").textContent = "$" + data.open.toFixed(2);
                 priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                 priceForm.querySelector(".high").textContent = "$" + data.high.toFixed(2);
                 priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);
-                priceForm.querySelector(".volume").textContent = data.volume.toFixed(2);
             });
         } else if (response.status === 404) {
             getCryptoPrice(ticker);
@@ -123,10 +122,11 @@ function getCryptoPrice(ticker) {
         if (response.ok) {
             response.json().then(function (data) {
                 if (data.close > 0) {
+                    document.querySelector(".price-date").textContent = "(" + date + ")";
+                    priceForm.querySelector(".open").textContent = "$" + data.open.toFixed(2);
                     priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                     priceForm.querySelector(".high").textContent = "--";
                     priceForm.querySelector(".low").textContent = "--";
-                    priceForm.querySelector(".volume").textContent = "--";
                 } else {
                     modal("The Stock/Cryptocurrency was not found.");
                 } 
@@ -140,17 +140,18 @@ function getCryptoPrice(ticker) {
 }
 
 function getInfo(coin, exchange, vol) {
+    let date = moment().format("YYYY-MM-DD");
     let apiUrl = "https://rest-sandbox.coinapi.io/v1/exchangerate/" + coin + "?apikey=09391D71-51BB-4594-A7C1-9AE2C45D8099";
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
                 if (data.rates.length === 0) {
                     modal("Did not recognize Cryptocurrency (Base).");
                 } else {
                     var updated = false;
                     for (let i = 0; i < data.rates.length; i++) {
                         if (exchange === data.rates[i].asset_id_quote) {
+                            document.querySelector(".exchange-date").textContent = date;
                             document.querySelector(".exchange-rates-flex-container p").className = "border-visable";
                             document.querySelector(".base-amount").textContent = vol + " ";
                             document.querySelector(".base").textContent = coin + " = ";
