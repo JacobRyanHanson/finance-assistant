@@ -10,7 +10,9 @@ header .cell {
 }
 
 header a,
+header a:visited,
 header a:hover {
+  text-decoration: none;
   color: #b4dde3;
 }
 
@@ -21,8 +23,8 @@ header ul {
 }
 
 header img {
-	height: 4rem;
-	padding: 0 10px 14px 0;
+  height: 4rem;
+  padding: 0 10px 14px 0;
 }
 
 header h1 {
@@ -108,8 +110,8 @@ header ul > * {
 
 .price-form,
 .exchange-rates-form {
-	background: #32343d;
-	color: #b4dde3;
+  background: #32343d;
+  color: #b4dde3;
 }
 
 .price-index-flex-container h2,
@@ -133,15 +135,15 @@ header ul > * {
 
 .price-form,
 .exchange-rates-form {
-	display: flex;
-	align-self: center;
-	border: #b4dde3 solid 1px;
+  display: flex;
+  align-self: center;
+  border: #b4dde3 solid 1px;
 }
 
 .price-form {
-	flex-direction: column;
-	width: 95%;
-	margin-bottom: 20px;
+  flex-direction: column;
+  width: 95%;
+  margin-bottom: 20px;
 }
 
 .price-form p {
@@ -158,18 +160,18 @@ header ul > * {
 }
 
 .exchange-rates-flex-container p {
-	color: #b4dde3;
-	width: 96%;
-	align-self: center;
-	margin-top: auto;
-	margin-bottom: auto;
-	padding: 20px;
-	text-align: center;
-	font-size: 1.3rem;
+  color: #b4dde3;
+  width: 96%;
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.3rem;
 }
 
 .border-visable {
-	border: #b4dde3 solid 1px;
+  border: #b4dde3 solid 1px;
 }
 
 .exchange-rates-form {
@@ -189,13 +191,13 @@ header ul > * {
 }
 
 .exchange-rates-form .button {
-	width: 12%;
-	height: 100%;
-	font-size: 1rem;
+  width: 12%;
+  height: 100%;
+  font-size: 1rem;
 }
 
 .white-text {
-    color: #fefefe;
+  color: #fefefe;
 }
 
 .card-div {
@@ -203,7 +205,6 @@ header ul > * {
   flex-direction: row;
   justify-content: space-around;
   background: transparent;
-  
 }
 
 .card-list {
@@ -216,20 +217,20 @@ header ul > * {
   border: 1px solid #e6e6e6;
   padding: 1rem;
   margin-bottom: 1.5rem;
-  min-width: 13rem;  
+  min-width: 13rem;
   opacity: 1;
   color: #b4dde3;
   z-index: 1;
 }
 
 .search-history {
-	font-size: 7rem;
-	text-align: center;
-	position: absolute;
-	opacity: 0.15;
-	text-justify: center;
-	padding-top: 8%;
-	z-index: -1;	
+  font-size: 7rem;
+  text-align: center;
+  position: absolute;
+  opacity: 0.15;
+  text-justify: center;
+  padding-top: 8%;
+  z-index: -1;
 }
 
 .product-card-thumbnail {
@@ -240,7 +241,7 @@ header ul > * {
 }
 
 .product-card-title {
-  font-family: 'Open sans', sans-serif;
+  font-family: "Open sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.45rem;
@@ -271,4 +272,4 @@ header ul > * {
   position: absolute;
   top: 10px;
   right: 10px;
-} 
+}
