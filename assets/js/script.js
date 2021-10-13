@@ -142,6 +142,15 @@ let display = function (data, coin, volume) {
     }
 }
 
+function getPreviousDate() {
+    var d = new Date();
+    var date = d.getFullYear() + "-";
+    date += (d.getMonth() + 1) + "-";
+    date += (d.getDate() - 1);
+    return date;
+}
+
+
 
 // // Makes About Modal Visible
 // aboutModal.addEventListener('click',function(){
