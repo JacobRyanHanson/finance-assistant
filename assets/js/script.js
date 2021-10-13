@@ -5,7 +5,7 @@ var popup = new Foundation.Reveal($('#exampleModal1'));
 // var aboutModal = document.querySelector(".list-item-2")
 // var modalbg = document.querySelector(".modal-bg")
 // var closeBtn = document.getElementById("close-button")
-var pastSearches = []
+// var pastSearches = []
 var featuredArticles = [
     document.querySelector(".article-0"),
     document.querySelector(".article-1"),
@@ -20,7 +20,7 @@ document.addEventListener("click", inputFocusHandler);
 priceForm.addEventListener("submit", priceFormSubmitHandler);
 exchangeForm.addEventListener("submit", exchangeFormSubmitHandler);
 
-$(window).ready(function() {
+$(window).ready(function () {
     $('#history-div').append(`<h1 class="search-history">SEARCH HISTORY</h1>`)
     addLocalStorageToScreen()
 })
@@ -93,7 +93,7 @@ function stockApi(ticker) {
                 priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                 priceForm.querySelector(".high").textContent = "$" + data.high.toFixed(2);
                 priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);
-                priceForm.querySelector(".volume").textContent = data.volume.toFixed(2);
+                // priceForm.querySelector(".volume").textContent = data.volume.toFixed(2);
                 console.log(data)
                 addToLocalStorage(data)
             });
@@ -110,6 +110,7 @@ function stockApi(ticker) {
 // Gets the Crypto Price.
 function getCryptoPrice(ticker) {
     let apiUrl = "https://api.polygon.io/v1/open-close/crypto/" + ticker + "/USD/" + getPreviousDate() + "?adjusted=true&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p"
+
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -117,11 +118,12 @@ function getCryptoPrice(ticker) {
                     priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                     priceForm.querySelector(".high").textContent = "--";
                     priceForm.querySelector(".low").textContent = "--";
-                    priceForm.querySelector(".volume").textContent = "--";
+                    // priceForm.querySelector(".volume").textContent = "--";
                     addToLocalStorage(data)
+                    console.log(data)
                 } else {
                     displayModal("ALERT!:  Not found");
-                } 
+                }
             });
         } else {
             displayModal("ALERT!:  Unexpected Error");
@@ -183,10 +185,10 @@ function getPreviousDate() {
 //     modalbg.classList.remove("bg-active");
 // });
 
-$( ".card-list" ).click(function(event) {
+$(".card-list").click(function (event) {
     console.log("clicked: " + event.target);
 });
-  
+
 
 function addHistory(tickerObj, count) {
     var html = $(`<div id=${count} class="product-card">
@@ -215,9 +217,27 @@ function addHistory(tickerObj, count) {
     $('#history-div').append(html)
 }
 
+function checkForDuplicates(ticker) {
+    var tempSearch = []
+    pastSearches = JSON.parse(localStorage.getItem('searchHistroy'))
+    if (!jQuery.isEmptyObject(pastSearches)) {
+        console.log('in if statement')
+        for (const element of pastSearches) {
+            console.log('in for statement element.ticker= ', element.ticker, 'ticker= ', ticker)
+            if (element.ticker != ticker) {
+                console.log('false')
+                tempSearch.push(element)
+            }
+        }
+        console.log(tempSearch);
+        return tempSearch
+    }
+}
+
 function addToLocalStorage(data) {
     console.log(data)
     var today = new Date().toISOString().slice(0, 10)
+    var pastSearches = []
     var dataObj = {}
     dataObj['date'] = today
     dataObj['ticker'] = data.symbol
@@ -225,9 +245,17 @@ function addToLocalStorage(data) {
     dataObj['high'] = data.high
     dataObj['low'] = data.low
     dataObj['open'] = data.open
+
+    pastSearches = checkForDuplicates(dataObj.ticker)
+
+    console.log(pastSearches)
     console.log('in addToLocalStorage function', dataObj.ticker)
-    if (!pastSearches.includes(dataObj.ticker) && pastSearches.length < 7) {
-        console.log(!pastSearches.includes(dataObj.ticker))
+    console.log(pastSearches.length)
+    if (!pastSearches.length) {
+        pastSearches.length = 0
+    }
+    if (pastSearches.length < 7) {
+        console.log(pastSearches, dataObj.ticker)
         pastSearches.push(dataObj)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
 
@@ -250,8 +278,8 @@ function addLocalStorageToScreen() {
     var count = 0
     if (localStorage.getItem('searchHistroy')) {
         pastSearches = JSON.parse(localStorage.getItem('searchHistroy'))
-        for (const element of pastSearches) {            
-            $.each(pastSearches, function(i, val) {
+        for (const element of pastSearches) {
+            $.each(pastSearches, function (i, val) {
                 searchedStock[i] = val
             })
             console.log(element);
@@ -284,7 +312,6 @@ function addLocalStorageToScreen() {
 //         displayModal("ALERT!:  Please enter a valid stock or cryptocurrency!")
 //     }
 // }
-
 //for error handling
 function displayModal(text) {
     var alertColor = "rgba(215, 54, 29, 1)";
