@@ -6,13 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/favicon.jpg" />
     <title>Finance Assistant</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/192a95a915.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-
-
 </head>
 
 <body>
@@ -117,8 +113,18 @@
             </div>
         </div>
         <div id="history-div" class="card-div"></div>
-        
     </main>
+
+    <div class="reveal" id="exampleModal1" data-reveal>
+        <h1>OOPS!</h1>
+        <p class="lead modal-text"></p>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <p hidden><button class="button modal-trigger" data-open="exampleModal1">Click me for a modal</button></p>
+
     <!-- About Modal Section -->
     <!-- <div class="modal-bg">
         <div class="modal" id="about-modal">
@@ -138,37 +144,38 @@
     <!-- Start Of Main Section-->
 
     <!-- error handling html Modal  -->
-    <div class="reveal" id="exampleModal1" data-reveal>
+    <!-- <div class="reveal" id="exampleModal1" data-reveal>
 
         <div data-closable id='alertBox'class="alert-box callout alert">
             <i class="fa fa-ban white-text" aria-hidden="true"></i><span id="alert" class="white-text">ALERT!</span>
-            <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
                 <span aria-hidden="true">&CircleTimes;</span>
-            </button> -->
+            </button>
         </div>
 
         <div data-closable id='warningBox' class="alert-box callout warning">
             <i class="fa fa-exclamation-triangle"></i> Warning...
-            <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
                 <span aria-hidden="true">&CircleTimes;</span>
-            </button> -->
+            </button>
         </div>
 
         <div data-closable id='successBox' class="alert-box callout success">
             <i class="fa fa-check"></i> Success!
-            <!-- <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
                 <span aria-hidden="true">&CircleTimes;</span>
-            </button> -->
+            </button>
         </div>
-        <!-- </div> -->
+        </div>
         <button class="close-button" data-close aria-label="Close reveal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
-    </div>
+    </div> -->
 
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/192a95a915.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
     integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 <script src="assets/js/script.js"></script>
