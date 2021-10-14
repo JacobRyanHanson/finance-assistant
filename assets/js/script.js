@@ -14,45 +14,9 @@ document.addEventListener("click", inputFocusHandler);
 priceForm.addEventListener("submit", priceFormSubmitHandler);
 exchangeForm.addEventListener("submit", exchangeFormSubmitHandler);
 
-var tickerHtml = $(`      <!--    TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
-</div>
-<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-  {
-  "symbols": [
-    {
-      "proName": "FOREXCOM:SPXUSD",
-      "title": "S&P 500"
-    },
-    {
-      "proName": "FOREXCOM:NSXUSD",
-      "title": "Nasdaq 100"
-    },
-    {
-      "proName": "FX_IDC:EURUSD",
-      "title": "EUR/USD"
-    },
-    {
-      "proName": "BITSTAMP:BTCUSD",
-      "title": "BTC/USD"
-    },
-    {
-      "proName": "BITSTAMP:ETHUSD",
-      "title": "ETH/USD"
-    }
-  ],
-  "colorTheme": "light",
-  "isTransparent": false,
-  "showSymbolLogo": true,
-  "locale": "en"
-};
-</script>`)
-
 // after window is ready adds the ticker and any historical search data to the page
 $(window).ready(function () {
-    $('#history-div').append(`${tickerHtml}<h1 class="search-history">SEARCH HISTORY</h1>`)
+    // $('#history-div').append(tickerHtml + '<h1 class="search-history">SEARCH HISTORY</h1>')
     addLocalStorageToScreen()
 })
 getFeaturedNews();
