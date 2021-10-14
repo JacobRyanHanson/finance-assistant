@@ -1,11 +1,5 @@
-//TODO: Search History
-//TODO: Make Modals Work
-
 var popup = new Foundation.Reveal($('#exampleModal1'));
-// var aboutModal = document.querySelector(".list-item-2")
-// var modalbg = document.querySelector(".modal-bg")
-// var closeBtn = document.getElementById("close-button")
-// var pastSearches = []
+
 var featuredArticles = [
     document.querySelector(".article-0"),
     document.querySelector(".article-1"),
@@ -31,7 +25,6 @@ function getFeaturedNews() {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                // console.log(data);
                 for (var i = 0; i < featuredArticles.length; i++) {
                     featuredArticles[i].setAttribute("href", data.results[i].article_url);
                     if (data.results[i].image_url) {
@@ -89,11 +82,10 @@ function stockApi(ticker) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                // console.log(data);
+                priceForm.querySelector(".open").textContent = "$" + data.open.toFixed(2);
                 priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                 priceForm.querySelector(".high").textContent = "$" + data.high.toFixed(2);
                 priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);
-                // priceForm.querySelector(".volume").textContent = data.volume.toFixed(2);
                 console.log(data)
                 addToLocalStorage(data)
             });
@@ -115,10 +107,10 @@ function getCryptoPrice(ticker) {
         if (response.ok) {
             response.json().then(function (data) {
                 if (data.close > 0) {
+                    priceForm.querySelector(".open").textContent = "$" + data.open.toFixed(2);
                     priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                     priceForm.querySelector(".high").textContent = "--";
                     priceForm.querySelector(".low").textContent = "--";
-                    // priceForm.querySelector(".volume").textContent = "--";
                     addToLocalStorage(data)
                     console.log(data)
                 } else {
@@ -173,17 +165,6 @@ function getPreviousDate() {
     date += (d.getDate() - 1);
     return date;
 }
-//----------------------------------------------------------------------------------------------------------
-
-
-// // Makes About Modal Visible
-// aboutModal.addEventListener('click',function(){
-//     modalbg.classList.add("bg-active");
-// });
-// // Closes About modal
-// closeBtn.addEventListener('click',function(){
-//     modalbg.classList.remove("bg-active");
-// });
 
 $(".card-list").click(function (event) {
     console.log("clicked: " + event.target);
@@ -289,30 +270,7 @@ function addLocalStorageToScreen() {
         console.log(searchedStock);
     }
 }
-// function formSubmitHandler(event) {
-//     event.preventDefault();
-//     var coinType = coinTypeInput.textContent().toUpperCase().trim();
-//     var convertType = convertTypeInput.value.toUpperCase().trim();
-//     var volume = parseFloat(volumeInput.value);
 
-//     if (coinType) {
-//         if (convertType) {
-//             if (typeof (volume) === "number" && volume > 0) {
-//                 getInfo(coinType, convertType, volume);
-//             } else {
-//                 // alert("Please enter a valid amount!");
-//                 displayModal("ALERT!:  Please enter a valid amount!")                  
-//             }
-//         } else {
-//             //alert("Please enter a valid stock or cryptocurrecty converstion!")
-//             displayModal("ALERT!:  Please enter a valid stock or cryptocurrecty converstion!")            
-//         }
-//     } else {
-//         //alert("Please enter a valid stock or cryptocurrency!");
-//         displayModal("ALERT!:  Please enter a valid stock or cryptocurrency!")
-//     }
-// }
-//for error handling
 function displayModal(text) {
     var alertColor = "rgba(215, 54, 29, 1)";
 
@@ -320,24 +278,3 @@ function displayModal(text) {
     $('#alert').text(` ${text}`)
     popup.open();
 }
-
-// getTickerNews("RCAT")
-//passes in ticker
-//articles for specific tickers
-// let getTickerNews = function (ticker) {
-//     let apiUrl = `https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
-//     fetch(apiUrl)
-//         .then(function (response) {
-//             if (response.ok) {
-//                 response.json().then(function (data) {
-//                     // stock based articles;
-
-//                 })
-//             }
-//         })
-//         .catch(function (error) {
-
-//         })
-//}
-
-
