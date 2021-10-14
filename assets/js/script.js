@@ -1,11 +1,5 @@
-//TODO: Search History
-//TODO: Make Modals Work
-
 var popup = new Foundation.Reveal($('#exampleModal1'));
-// var aboutModal = document.querySelector(".list-item-2")
-// var modalbg = document.querySelector(".modal-bg")
-// var closeBtn = document.getElementById("close-button")
-// var pastSearches = []
+
 var featuredArticles = [
     document.querySelector(".article-0"),
     document.querySelector(".article-1"),
@@ -68,7 +62,6 @@ function getFeaturedNews() {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                // console.log(data);
                 for (var i = 0; i < featuredArticles.length; i++) {
                     featuredArticles[i].setAttribute("href", data.results[i].article_url);
                     if (data.results[i].image_url) {
@@ -125,10 +118,12 @@ function stockApi(ticker) {
     let apiUrl = "https://api.polygon.io/v1/open-close/" + ticker + "/" + getPreviousDate() + "?adjusted=true&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p";
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
-            response.json().then(function (data) {               
+            response.json().then(function (data) {
+                priceForm.querySelector(".open").textContent = "$" + data.open.toFixed(2);
                 priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                 priceForm.querySelector(".high").textContent = "$" + data.high.toFixed(2);
-                priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);                
+                priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);
+                
                 addToLocalStorage(data)
             });
         } else if (response.status === 404) {
@@ -149,12 +144,12 @@ function getCryptoPrice(ticker) {
         if (response.ok) {
             response.json().then(function (data) {
                 if (data.close > 0) {
+                    priceForm.querySelector(".open").textContent = "$" + data.open.toFixed(2);
                     priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                     priceForm.querySelector(".high").textContent = "--";
                     priceForm.querySelector(".low").textContent = "--";
-                    // priceForm.querySelector(".volume").textContent = "--";
                     addToLocalStorage(data)
-                    console.log(data)
+                    
                 } else {
                     displayModal("ALERT!:  Not found");
                 }
@@ -172,7 +167,7 @@ function getInfo(coin, exchange, vol) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
+                
                 if (data.rates.length === 0) {
                     displayModal("ALERT!:  Did not regonise Cryptocurrency (Base)");
                 } else {
@@ -207,17 +202,6 @@ function getPreviousDate() {
     date += (d.getDate() - 1);
     return date;
 }
-//----------------------------------------------------------------------------------------------------------
-
-
-// // Makes About Modal Visible
-// aboutModal.addEventListener('click',function(){
-//     modalbg.classList.add("bg-active");
-// });
-// // Closes About modal
-// closeBtn.addEventListener('click',function(){
-//     modalbg.classList.remove("bg-active");
-// });
 
 //Adds HTML and data to search history section
 function addHistory(tickerObj, count) {
@@ -252,59 +236,55 @@ function checkForDuplicates(ticker) {
     var tempSearch = []
     pastSearches = JSON.parse(localStorage.getItem('searchHistroy'))
     if (!jQuery.isEmptyObject(pastSearches)) {
-        console.log('in if statement')
+        
         for (const element of pastSearches) {
-            console.log('in for statement element.ticker= ', element.ticker, 'ticker= ', ticker)
-            if (element.ticker != ticker) {
-                console.log('false')
+            
+            if (element.ticker !== ticker) {
+               
                 tempSearch.push(element)
             }
         }
-        console.log(tempSearch);
-        return tempSearch
     }
+    return tempSearch
 }
 
 // adds new ticker object to localStorage array
 function addToLocalStorage(data) {
-    console.log(data)
+    
     var today = new Date().toISOString().slice(0, 10)
     var pastSearches = []
     var dataObj = {}
     dataObj['date'] = today
     dataObj['ticker'] = data.symbol
     dataObj['close'] = data.close
-    dataObj['high'] = data.high
-    dataObj['low'] = data.low
+    if (data.high && data.low) {
+        dataObj['high'] = data.high
+        dataObj['low'] = data.low
+    } else {
+        dataObj['high'] = "--"
+        dataObj['low'] = "--"
+    }
+    
     dataObj['open'] = data.open
-
     pastSearches = checkForDuplicates(dataObj.ticker)
-
-    console.log(pastSearches)
-    console.log('in addToLocalStorage function', dataObj.ticker)
     console.log(pastSearches.length)
     if (!pastSearches.length) {
         pastSearches.length = 0
     }
-    if (pastSearches.length < 7) {
-        console.log(pastSearches, dataObj.ticker)
+    if (pastSearches.length < 6) {        
         pastSearches.push(dataObj)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
-
         addLocalStorageToScreen()
-    } else if (pastSearches.length >= 7) {
-        console.log(pastSearches.shift())
+    } else if (pastSearches.length >= 6) {
+        pastSearches.shift()
         pastSearches.push(dataObj)
-        console.log('in elseif', pastSearches)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
-
         addLocalStorageToScreen()
     }
 }
 
 // pulls array from localStorage and writes HTML and ticker data to page
 function addLocalStorageToScreen() {
-    console.log('in addLocalStorageToScreen function')
     $('#history-div').empty()
     $('#history-div').append(`<h1 class="search-history">SEARCH HISTORY</h1>`)
     var searchedStock = {}
@@ -315,38 +295,12 @@ function addLocalStorageToScreen() {
             $.each(pastSearches, function (i, val) {
                 searchedStock[i] = val
             })
-            console.log(element);
             addHistory(element, count)
             count++
-        }
-        console.log(searchedStock);
+        } 
     }
 }
-// function formSubmitHandler(event) {
-//     event.preventDefault();
-//     var coinType = coinTypeInput.textContent().toUpperCase().trim();
-//     var convertType = convertTypeInput.value.toUpperCase().trim();
-//     var volume = parseFloat(volumeInput.value);
 
-//     if (coinType) {
-//         if (convertType) {
-//             if (typeof (volume) === "number" && volume > 0) {
-//                 getInfo(coinType, convertType, volume);
-//             } else {
-//                 // alert("Please enter a valid amount!");
-//                 displayModal("ALERT!:  Please enter a valid amount!")                  
-//             }
-//         } else {
-//             //alert("Please enter a valid stock or cryptocurrecty converstion!")
-//             displayModal("ALERT!:  Please enter a valid stock or cryptocurrecty converstion!")            
-//         }
-//     } else {
-//         //alert("Please enter a valid stock or cryptocurrency!");
-//         displayModal("ALERT!:  Please enter a valid stock or cryptocurrency!")
-//     }
-// }
-
-//for error handling
 function displayModal(text) {
     var alertColor = "rgba(215, 54, 29, 1)";
 
@@ -354,24 +308,3 @@ function displayModal(text) {
     $('#alert').text(` ${text}`)
     popup.open();
 }
-
-// getTickerNews("RCAT")
-//passes in ticker
-//articles for specific tickers
-// let getTickerNews = function (ticker) {
-//     let apiUrl = `https://api.polygon.io/v2/reference/news?limit=10&order=descending&sort=published_utc&ticker=${ticker}&apiKey=bOZCwGtAFurvAO_gqOPxaOvqmw8ALJWg`;
-//     fetch(apiUrl)
-//         .then(function (response) {
-//             if (response.ok) {
-//                 response.json().then(function (data) {
-//                     // stock based articles;
-
-//                 })
-//             }
-//         })
-//         .catch(function (error) {
-
-//         })
-//}
-
-
