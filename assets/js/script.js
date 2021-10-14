@@ -265,11 +265,12 @@ function addLocalStorageToScreen() {
         } 
     }
     $('.product-card').click(function(event) {
-        // event.preventDefault()
+        event.preventDefault()
         
         var parents = $(event.currentTarget)
         var tickerRaw = parents[0].children[0].innerText
         var newTicker = tickerRaw.split("-")
+        
         stockApi(newTicker[0])
     })
 }
