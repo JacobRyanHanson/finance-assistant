@@ -86,7 +86,7 @@ function stockApi(ticker) {
                 priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                 priceForm.querySelector(".high").textContent = "$" + data.high.toFixed(2);
                 priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);
-                console.log(data)
+                
                 addToLocalStorage(data)
             });
         } else if (response.status === 404) {
@@ -112,7 +112,7 @@ function getCryptoPrice(ticker) {
                     priceForm.querySelector(".high").textContent = "--";
                     priceForm.querySelector(".low").textContent = "--";
                     addToLocalStorage(data)
-                    console.log(data)
+                    
                 } else {
                     displayModal("ALERT!:  Not found");
                 }
@@ -130,7 +130,7 @@ function getInfo(coin, exchange, vol) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
+                
                 if (data.rates.length === 0) {
                     displayModal("ALERT!:  Did not regonise Cryptocurrency (Base)");
                 } else {
@@ -202,57 +202,52 @@ function checkForDuplicates(ticker) {
     var tempSearch = []
     pastSearches = JSON.parse(localStorage.getItem('searchHistroy'))
     if (!jQuery.isEmptyObject(pastSearches)) {
-        console.log('in if statement')
+        
         for (const element of pastSearches) {
-            console.log('in for statement element.ticker= ', element.ticker, 'ticker= ', ticker)
-            if (element.ticker != ticker) {
-                console.log('false')
+            
+            if (element.ticker !== ticker) {
+               
                 tempSearch.push(element)
             }
         }
-        console.log(tempSearch);
-        return tempSearch
     }
+    return tempSearch
 }
 
 function addToLocalStorage(data) {
-    console.log(data)
+    
     var today = new Date().toISOString().slice(0, 10)
     var pastSearches = []
     var dataObj = {}
     dataObj['date'] = today
     dataObj['ticker'] = data.symbol
     dataObj['close'] = data.close
-    dataObj['high'] = data.high
-    dataObj['low'] = data.low
+    if (data.high && data.low) {
+        dataObj['high'] = data.high
+        dataObj['low'] = data.low
+    } else {
+        dataObj['high'] = "--"
+        dataObj['low'] = "--"
+    }
+    
     dataObj['open'] = data.open
-
     pastSearches = checkForDuplicates(dataObj.ticker)
 
-    console.log(pastSearches)
-    console.log('in addToLocalStorage function', dataObj.ticker)
-    console.log(pastSearches.length)
     if (!pastSearches.length) {
         pastSearches.length = 0
     }
     if (pastSearches.length < 7) {
-        console.log(pastSearches, dataObj.ticker)
         pastSearches.push(dataObj)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
-
         addLocalStorageToScreen()
     } else if (pastSearches.length >= 7) {
-        console.log(pastSearches.shift())
         pastSearches.push(dataObj)
-        console.log('in elseif', pastSearches)
         localStorage.setItem('searchHistroy', JSON.stringify(pastSearches))
-
         addLocalStorageToScreen()
     }
 }
 
 function addLocalStorageToScreen() {
-    console.log('in addLocalStorageToScreen function')
     $('#history-div').empty()
     $('#history-div').append(`<h1 class="search-history">SEARCH HISTORY</h1>`)
     var searchedStock = {}
@@ -263,11 +258,9 @@ function addLocalStorageToScreen() {
             $.each(pastSearches, function (i, val) {
                 searchedStock[i] = val
             })
-            console.log(element);
             addHistory(element, count)
             count++
-        }
-        console.log(searchedStock);
+        } 
     }
 }
 
