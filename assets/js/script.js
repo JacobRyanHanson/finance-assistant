@@ -19,6 +19,7 @@ $(window).ready(function () {
     // $('#history-div').append(tickerHtml + '<h1 class="search-history">SEARCH HISTORY</h1>')
     addLocalStorageToScreen()
 })
+
 getFeaturedNews();
 // Gets featured news.
 function getFeaturedNews() {
@@ -169,7 +170,7 @@ function getPreviousDate() {
 
 //Adds HTML and data to search history section
 function addHistory(tickerObj, count) {
-    var html = $(`<div id=${count} class="product-card">
+    var html = $(`<a id=${count} class="product-card">    
     <div class="product-card-thumbnail">
     <h1>${tickerObj.ticker}</h1>
     </div>
@@ -190,6 +191,7 @@ function addHistory(tickerObj, count) {
         <h2 class="product-card-title">Open: ${tickerObj.open}</h2>
     </li>
     </ul>
+    </a>
     `)
 
     $('#history-div').append(html)
@@ -231,7 +233,6 @@ function addToLocalStorage(data) {
     
     dataObj['open'] = data.open
     pastSearches = checkForDuplicates(dataObj.ticker)
-    console.log(pastSearches.length)
     if (!pastSearches.length) {
         pastSearches.length = 0
     }
@@ -263,6 +264,14 @@ function addLocalStorageToScreen() {
             count++
         } 
     }
+    $('.product-card').click(function(event) {
+        // event.preventDefault()
+        
+        var parents = $(event.currentTarget)
+        var tickerRaw = parents[0].children[0].innerText
+        var newTicker = tickerRaw.split("-")
+        stockApi(newTicker[0])
+    })
 }
 
 function displayModal(text) {

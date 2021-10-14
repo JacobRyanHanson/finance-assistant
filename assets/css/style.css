@@ -19,7 +19,8 @@ header a:hover {
 header h1,
 header nav,
 header ul {
-  display: inline;
+  display: flex;
+  margin-bottom: 0;
 }
 
 header img {
@@ -203,8 +204,10 @@ header ul > * {
 .card-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   background: transparent;
+  height: 30rem;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .card-list {
@@ -220,7 +223,7 @@ header ul > * {
   min-width: 13rem;
   opacity: 1;
   color: #b4dde3;
-  z-index: 1;
+  height: fit-content;
 }
 
 .search-history {
@@ -238,14 +241,14 @@ header ul > * {
   position: relative;
   border-bottom: 2px solid #b4dde3;
   text-align: center;
+  flex-wrap: nowrap;
 }
 
 .product-card-title {
   padding: 5px;
   border: #b4dde3 solid 1px;
   font-family: "Open sans", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.9rem;  
   line-height: 1.45rem;
   margin-top: 1rem;
   margin-bottom: 0;
@@ -281,4 +284,47 @@ header ul > * {
   bottom:0;
   z-index:10;
   width:100%;
+}
+
+@media screen and (max-width: 768px) {  
+  header ul>* {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  #featured-articles {
+    position: initial;
+  }
+
+  .featured-article-author {
+    position: relative;
+    top: 60%;
+  }
+  
+  #featured-articles>* {
+    flex-basis: 100%;
+    height: 150px;
+  }
+
+  .exchange-rates-flex-container {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .featured-article-author {
+    top: 50%;
+  }
+  
+  .exchange-rates-form .input-group-label {
+    width: 51%;
+  }
+
+  .exchange-rates-form .button {
+    width: 17%;
+  }
+
+  header ul {
+    font-size: 1rem;
+  }
 }

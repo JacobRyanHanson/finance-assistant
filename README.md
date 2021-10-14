@@ -12,3 +12,4 @@ https://jacobryanhanson.github.io/finance-assistant/
 ![alt text](./assets/images/top-of-page.png)
 ![alt text](./assets/images/input-history-ticker.png)
 ![alt text](./assets/images/localstorage.png)
+![finance-assistant](https://user-images.githubusercontent.com/89164466/137236307-a38800d1-c1fd-4593-a13f-7898b7ac480c.png)
