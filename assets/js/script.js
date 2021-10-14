@@ -20,8 +20,45 @@ document.addEventListener("click", inputFocusHandler);
 priceForm.addEventListener("submit", priceFormSubmitHandler);
 exchangeForm.addEventListener("submit", exchangeFormSubmitHandler);
 
+var tickerHtml = $(`      <!--    TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
+</div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "Nasdaq 100"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR/USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "BTC/USD"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "ETH/USD"
+    }
+  ],
+  "colorTheme": "light",
+  "isTransparent": false,
+  "showSymbolLogo": true,
+  "locale": "en"
+};
+</script>`)
+
+// after window is ready adds the ticker and any historical search data to the page
 $(window).ready(function () {
-    $('#history-div').append(`<h1 class="search-history">SEARCH HISTORY</h1>`)
+    $('#history-div').append(`${tickerHtml}<h1 class="search-history">SEARCH HISTORY</h1>`)
     addLocalStorageToScreen()
 })
 getFeaturedNews();
@@ -88,13 +125,10 @@ function stockApi(ticker) {
     let apiUrl = "https://api.polygon.io/v1/open-close/" + ticker + "/" + getPreviousDate() + "?adjusted=true&apiKey=rSbWvupXYcUkBP6mLKFppfHMRHKEmL1p";
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
-            response.json().then(function (data) {
-                // console.log(data);
+            response.json().then(function (data) {               
                 priceForm.querySelector(".close").textContent = "$" + data.close.toFixed(2);
                 priceForm.querySelector(".high").textContent = "$" + data.high.toFixed(2);
-                priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);
-                // priceForm.querySelector(".volume").textContent = data.volume.toFixed(2);
-                console.log(data)
+                priceForm.querySelector(".low").textContent = "$" + data.low.toFixed(2);                
                 addToLocalStorage(data)
             });
         } else if (response.status === 404) {
@@ -185,11 +219,7 @@ function getPreviousDate() {
 //     modalbg.classList.remove("bg-active");
 // });
 
-$(".card-list").click(function (event) {
-    console.log("clicked: " + event.target);
-});
-
-
+//Adds HTML and data to search history section
 function addHistory(tickerObj, count) {
     var html = $(`<div id=${count} class="product-card">
     <div class="product-card-thumbnail">
@@ -216,7 +246,8 @@ function addHistory(tickerObj, count) {
 
     $('#history-div').append(html)
 }
-
+// after user searches for ticker, check localStorage to see if that item already exists. If so it is removed and the newer entry is 
+// added to search history section
 function checkForDuplicates(ticker) {
     var tempSearch = []
     pastSearches = JSON.parse(localStorage.getItem('searchHistroy'))
@@ -234,6 +265,7 @@ function checkForDuplicates(ticker) {
     }
 }
 
+// adds new ticker object to localStorage array
 function addToLocalStorage(data) {
     console.log(data)
     var today = new Date().toISOString().slice(0, 10)
@@ -270,6 +302,7 @@ function addToLocalStorage(data) {
     }
 }
 
+// pulls array from localStorage and writes HTML and ticker data to page
 function addLocalStorageToScreen() {
     console.log('in addLocalStorageToScreen function')
     $('#history-div').empty()
@@ -312,6 +345,7 @@ function addLocalStorageToScreen() {
 //         displayModal("ALERT!:  Please enter a valid stock or cryptocurrency!")
 //     }
 // }
+
 //for error handling
 function displayModal(text) {
     var alertColor = "rgba(215, 54, 29, 1)";
