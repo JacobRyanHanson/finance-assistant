@@ -9,3 +9,6 @@ response data. Pulls out the specific information we want to display to the user
 
 
 ## Screenshots
+![alt text](./assets/images/top-of-page.png)
+![alt text](./assets/images/input-history-ticker.png)
+![alt text](./assets/images/localstorage.png)
