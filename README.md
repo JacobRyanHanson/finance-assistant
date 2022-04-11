@@ -9,4 +9,4 @@ response data. Pulls out the specific information we want to display to the user
 https://jacobryanhanson.github.io/finance-assistant/
 
 ## Screenshots
-![finance-assistant](https://user-images.githubusercontent.com/89164466/162850347-02fa1ba4-aa4d-4307-9a18-a24e1b06c4f7.png)
+![finance-assistant](https://user-images.githubusercontent.com/89164466/162850498-124950c2-8f71-43a9-a55e-0d5c841dd28f.png)
